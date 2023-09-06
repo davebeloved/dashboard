@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    margin: -20px 0 50px;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.content.open .open-icon {
+    transform: rotate(180deg);
+}
+.content.open .open-sub {
+    height: auto;
+}
+
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.3;
+    }
+    table {
+    }
+    th,
+    td {
+        @apply py-3 px-2.5 text-sm text-left border-y border-gray-200;
+    }
+    thead {
+        @apply bg-neutral-100;
+    }
+    th {
+        @apply font-semibold;
+    }
+    a {
+        @apply text-sky-500 hover:underline;
+    }
+}
