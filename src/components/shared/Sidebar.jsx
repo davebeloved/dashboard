@@ -21,7 +21,7 @@ export default function Sidebar() {
         }
     }
     return (
-        <div className="bg-neutral-900 w-20  lg:w-60 fixed top-0 left-0 bottom-0  h-screen p-3 flex flex-col z-10">
+        <div className="bg-neutral-900 w-20  lg:w-60 fixed top-0 left-0 bottom-0   p-3 flex flex-col z-10">
             <div className="flex items-center gap-2 px-1 py-3">
                 <FcBullish fontSize={24} className="text-4xl lg:text-xl" />
                 <span className="hidden lg:inline-block text-neutral-200 text-lg">Admin</span>
