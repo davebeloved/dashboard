@@ -18,7 +18,7 @@ export default function Layout() {
         <div className="bg-neutral-100 h-screen  lg:w-screen overflow-hidden flex ">
             <Sidebar />
 
-            <div className="flex flex-col   lg:flex-1 w-full lg:pl-60">
+            <div className="flex flex-col  overflow-scroll  lg:flex-1 w-full lg:pl-60">
                 <Header />
                 <div className="md:flex-1  lg:p-4 lg:min-h-0">
                     <Outlet />
