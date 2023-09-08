@@ -13,6 +13,7 @@ const ProjectInfo = () => {
     const [name, setName] = useState('')
     const [comment, setComment] = useState('')
     const [singleDetails, setSingleDetails] = useState([])
+    const [projectComments, setProjectComments] = useState([])
 
     console.log('detailssss', projectDetail)
     const { id } = useParams()
@@ -39,7 +40,7 @@ const ProjectInfo = () => {
                         }
                     }
                 )
-                // console.log('newdataaa', res.data.data)
+                console.log('newdataaa', res.data.data)
                 setSingleDetails(res.data.data)
             }
         } catch (error) {
@@ -48,6 +49,30 @@ const ProjectInfo = () => {
     }
     useEffect(() => {
         fetchSingleDetails()
+    }, [userToken])
+
+    const fetchComments = async () => {
+        try {
+            if (userToken) {
+                const res = await axios.get(
+                    `https://spms.telexcoresources.com.ng/api/v1/comments/${id}/view`,
+
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${userToken}`
+                        }
+                    }
+                )
+                console.log('newdataaa', res.data.data)
+                setProjectComments(res.data.data)
+            }
+        } catch (error) {
+            console.log('errorrrrrrrrrff', error)
+        }
+    }
+    useEffect(() => {
+        fetchComments()
     }, [userToken])
 
     console.log('sssssss', singleDetails)
@@ -61,14 +86,16 @@ const ProjectInfo = () => {
                 name,
                 comment
             })
-
-            // window.location.reload()
+            window.location.reload()
+            setComment('')
+            setName('')
             console.log(res)
             console.log('success')
         } catch (error) {
             console.log(error)
         }
     }
+    console.log('thhhsisi---', projectComments)
 
     return (
         <>
@@ -76,7 +103,7 @@ const ProjectInfo = () => {
                 <DetailsModal isOpen={isOpen} setIsOpen={setIsOpen} />
             ) : (
                 <div className="relative bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-                    <h2 className="text-gray-900 font-bold text-xl mb-10">fff</h2>
+                    <h2 className="text-gray-900 font-bold text-xl mb-10">Project Details</h2>
                     <strong className="text-gray-700 font-bold">Projects Outcome</strong>
                     <div className="border-x border-gray-200 rounded-sm mt-3 grid grid-cols-2 gap-x-10">
                         <div>
@@ -94,7 +121,7 @@ const ProjectInfo = () => {
                                     </button>
                                 </thead>
                                 <tbody>
-                                    {projectDetail.map((detail) => {
+                                    {singleDetails.map((detail) => {
                                         const { id, indicator, details } = detail
                                         return (
                                             <tr key={id} className="">
@@ -124,16 +151,28 @@ const ProjectInfo = () => {
                                     className="w-full p-3 outline-none border border-neutral-600 mb-3"
                                     onChange={(e) => setName(e.target.value)}
                                 />
-                                <input
+                                <textarea
                                     type="text"
                                     name="comment"
                                     placeholder="Enter your comment"
                                     className="w-full p-3 outline-none border border-neutral-600 mb-4"
                                     onChange={(e) => setComment(e.target.value)}
-                                />
+                                ></textarea>
                                 <button onClick={addComment} className="bg-gray-600 py-2 px-5 text-white">
                                     Send
                                 </button>
+                            </div>
+                            <div className="mt-7 ">
+                                <h2 className="font-bold">Project Comments ({projectComments.length})</h2>
+
+                                {projectComments.map((comment) => {
+                                    return (
+                                        <div className="bg-neutral-100 mb-3 p-3">
+                                            <h3 className="font-bold text-lg"> {comment.name}</h3>
+                                            <p className="italic text-gray-600">{comment.comment}</p>
+                                        </div>
+                                    )
+                                })}
                             </div>
                         </div>
                     </div>
