@@ -13,12 +13,14 @@ export default function Layout() {
             navigate('/login')
         }
     })
+
     return (
-        <div className="bg-neutral-100 h-screen w-full lg:w-screen overflow-hidden flex ">
+        <div className="bg-neutral-100 h-screen  lg:w-screen overflow-hidden flex ">
             <Sidebar />
-            <div className="flex flex-col  flex-1  pl-[-100px] lg:pl-60">
+
+            <div className="flex flex-col   lg:flex-1 w-full lg:pl-60">
                 <Header />
-                <div className="md:flex-1  lg:p-4 min-h-0 overflow-auto">
+                <div className="md:flex-1  lg:p-4 lg:min-h-0">
                     <Outlet />
                 </div>
             </div>

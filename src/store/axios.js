@@ -8,7 +8,8 @@ const axiosClient = axios.create({
 })
 
 axiosClient.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('TOKEN')}`
+    config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('TOKEN'))}`
+
     return config
 })
 
@@ -19,10 +20,10 @@ axiosClient.interceptors.response.use(
     (error) => {
         if (error.response && error.response.status === 401) {
             localStorage.removeItem('TOKEN')
-            window.location.reload()
-            const navigate = useNavigate()
+            // window.location.href = '/login'
+            // const navigate = useNavigate()
 
-            navigate('/login')
+            // navigate('/login')
             return error
         }
         throw error

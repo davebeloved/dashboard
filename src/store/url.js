@@ -6,8 +6,8 @@
 //     headers: {
 //         'Content-Type': 'application/json',
 //         Accept: 'application/json',
-//         Authorization: 'Bearer' + localStorage.getItem('token')
+//         Authorization: 'Bearer' + localStorage.getItem('TOKEN')
 //     }
 // })
 
-export const url = 'https://spms.telexcoresources.com.ng/api'
+// export const url = 'https://spms.telexcoresources.com.ng/api'

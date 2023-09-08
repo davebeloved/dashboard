@@ -1,60 +1,122 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai'
-import { projectInfo } from '../data'
+import { projectInfo, projectStatus } from '../data'
+import axiosClient from '../store/axios'
 
 const Modal = ({ setIsOpen }) => {
-    const [projects, setProjects] = useState({ projectName: '', progress: '' })
+    const [projectname, setProjectname] = useState('')
+    const [pillarid, setPillarid] = useState('')
+    const [contractor, setContractor] = useState('')
+    const [amount, setAmount] = useState('')
+    const [status, setStatus] = useState('')
+    const [award_date, setAward_date] = useState('')
+    const [delivery_date, setDelivery_date] = useState('')
 
     const closeModal = () => {
         setIsOpen(false)
     }
 
-    const handleChange = (e) => {
-        setProjects({ ...projects, [e.target.name]: e.target.value })
-    }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+
+        try {
+            const res = await axiosClient.post('/v1/project/add', {
+                projectname,
+                pillarid,
+                contractor,
+                amount,
+                status,
+                award_date,
+                delivery_date
+            })
+            closeModal()
+            window.location.reload()
+            console.log(res)
+            console.log('success')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-black/50 w-screen z-20 flex items-start justify-center">
-            <div className="bg-white w-96 rounded-md px-4 py-5 mt-5 ml-44">
+            <div className="bg-white w-[480px] rounded-md px-4 py-5 ml-44">
                 <div className="flex items-center justify-between ">
-                    <h2>Add New Project</h2>
+                    <h2 className="font-bold">Add New Project</h2>
                     <AiFillCloseCircle onClick={closeModal} size={25} className="cursor-pointer" />
                 </div>
                 <div className="mt-8">
                     <div className="flex flex-col">
+                        <label className="text-neutral-700 pb-1">Pillar ID</label>
+                        <input
+                            onChange={(e) => setPillarid(e.target.value)}
+                            name="pillarid"
+                            type="text"
+                            placeholder="enter pillar id"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                        />
                         <label className="text-neutral-700 pb-1">Project Name</label>
                         <input
-                            onChange={handleChange}
-                            name="projectName"
+                            onChange={(e) => setProjectname(e.target.value)}
+                            name="projectname"
                             type="text"
                             placeholder="enter project name"
                             className="w-full outline-none border border-neutral-500 p-3 mb-4"
                         />
+                        <label className="text-neutral-700 pb-1">Contractor Name</label>
+                        <input
+                            onChange={(e) => setContractor(e.target.value)}
+                            name="contractor"
+                            type="text"
+                            placeholder="Contractor Name"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                        />
+                        <label className="text-neutral-700 pb-1"> Amount</label>
+                        <input
+                            onChange={(e) => setAmount(e.target.value)}
+                            name="amount"
+                            type="number"
+                            placeholder="Enter Amount"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                        />
                     </div>
-                    <label className="text-neutral-700 pb-1">Project Progress</label>
+                    <label className="text-neutral-700 pb-1">Status</label>
                     <br></br>
                     <select
-                        value={projects.progress}
-                        onChange={handleChange}
-                        name="progress"
-                        id="project"
-                        className="border border-neutral-700 p-2 w-48 outline-none mb-10"
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                        name="status"
+                        id="status"
+                        className="border border-neutral-700 p-2 w-48 outline-none mb-5"
                     >
-                        <option>0</option>
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
-                        <option>40</option>
-                        <option>50</option>
-                        <option>60</option>
-                        <option>70</option>
-                        <option>80</option>
-                        <option>90</option>
-                        <option>100</option>
+                        {projectStatus.map((status) => {
+                            const { value } = status
+
+                            return <option>{value}</option>
+                        })}
                     </select>
+                    <div className="flex items-center gap-x-5 mb-10">
+                        <div>
+                            <label>Award Date</label>
+                            <input
+                                onChange={(e) => setAward_date(e.target.value)}
+                                name="award_date"
+                                type="date"
+                                placeholder="Award Date"
+                                className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            />
+                        </div>
+                        <div>
+                            <label>Delivery Date</label>
+                            <input
+                                onChange={(e) => setDelivery_date(e.target.value)}
+                                name="delivery_date"
+                                type="date"
+                                placeholder="Delivery Date"
+                                className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            />
+                        </div>
+                    </div>
                     <div className="flex justify-end">
                         <div className="">
                             <button onClick={closeModal} className="mr-4 bg-red-700 text-white py-2 px-4">

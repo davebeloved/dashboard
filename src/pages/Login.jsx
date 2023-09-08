@@ -9,10 +9,11 @@ import { useLoginUserMutation } from '../store/apiSlice'
 import { useStateContext } from '../context/contextProvider'
 import axiosClient from '../store/axios'
 import axios from 'axios'
+import Register from '../components/Register'
 
 const Login = () => {
     const [signIn, toggle] = React.useState(true)
-    const [signup, setSignup] = useState({ name: '', email: '', password: '', password_confirmation: '' })
+    // const [signup, setSignup] = useState({ name: '', email: '', password: '', password_confirmation: '' })
     // const [login, setLogin] = useState({ email: '', password: '' })
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -25,30 +26,6 @@ const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (userToken) {
-            navigate('/')
-        }
-    }, [navigate, userToken])
-
-    // handlesignupchange function
-    const handleSignUp = (e) => {
-        setSignup({ ...signup, [e.target.name]: e.target.value })
-    }
-    const handleSubmitSignUp = async (e) => {
-        e.preventDefault()
-        // dispatch(registerUser(signup))
-        try {
-            const { data } = await axiosClient.post('/register', signup)
-            console.log('data--', data)
-
-            _setUserToken(localStorage.setItem('TOKEN', JSON.stringify(data)))
-            setCurrentUser(data)
-            window.location.reload()
-        } catch (error) {
-            // console.log(error)
-        }
-    }
     const handleLogin = async (e) => {
         e.preventDefault()
         // dispatch(loginUser(login))
@@ -59,31 +36,22 @@ const Login = () => {
             })
             console.log('data--', data)
             _setUserToken(localStorage.setItem('TOKEN', JSON.stringify(data.token)))
-            setCurrentUser(localStorage.setItem('USER', JSON.stringify(data.user)))
             window.location.reload()
+            // _setUserToken(localStorage.setItem('TOKEN', data.token))
+            // setCurrentUser(localStorage.setItem('USER', JSON.stringify(data.user)))
         } catch (error) {
             console.log(error)
         }
     }
+    useEffect(() => {
+        if (userToken) {
+            navigate('/')
+        }
+    }, [])
 
     return (
         <Components.Container>
-            <Components.SignUpContainer signinIn={signIn}>
-                <Components.Form>
-                    <Components.Title>Create Account</Components.Title>
-                    <Components.Input type="text" name="name" placeholder="Name" onChange={handleSignUp} />
-                    <Components.Input type="email" name="email" placeholder="Email" onChange={handleSignUp} />
-                    <Components.Input type="password" name="password" placeholder="Password" onChange={handleSignUp} />
-                    <Components.Input
-                        type="password"
-                        name="password_confirmation"
-                        placeholder="Confirm Password"
-                        onChange={handleSignUp}
-                    />
-                    <Components.Button onClick={handleSubmitSignUp}>Sign Up</Components.Button>
-                </Components.Form>
-            </Components.SignUpContainer>
-
+            <Register signIn={signIn} />
             <Components.SignInContainer signinIn={signIn}>
                 <Components.Form>
                     <Components.Title>Sign in</Components.Title>
