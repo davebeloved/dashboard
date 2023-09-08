@@ -15,6 +15,7 @@ export const StateContextProvider = ({ children }) => {
     const [singlePillar, setSinglePillar] = useState([])
 
     const { id } = useParams()
+    // console.log('idddd', id);
 
     const fetchData = async () => {
         try {
@@ -73,26 +74,9 @@ export const StateContextProvider = ({ children }) => {
         fetchProjectDetails()
     }, [userToken])
 
-    const fetchSinglePillar = async () => {
-        try {
-            if (userToken) {
-                const res = await axios.post('https://spms.telexcoresources.com.ng/api/v1/project/details/view/all', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${userToken}`
-                    }
-                })
-                setSinglePillar(res.data.data)
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    useEffect(() => {
-        fetchSinglePillar()
-    }, [userToken])
 
-    console.log('helloll', singlePillar)
+
+    // console.log('helloll', singlePillar)
     // console.log('mydata', pillars)
 
     // const setUserToken = (token) => {

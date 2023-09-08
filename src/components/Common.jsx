@@ -4,21 +4,47 @@ import Modal from './Modal'
 import Progress from './Progress'
 import { projectInfo } from '../data'
 import { useStateContext } from '../context/contextProvider'
+import axios from 'axios'
 
 const Common = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const { projects, pillars, singlePillar } = useStateContext()
-    console.log('myprojectssss', projects)
+    const { projects, pillars, userToken } = useStateContext()
+    const [singlePillar, setSinglePillar] = useState([])
+    // console.log('myprojectssss', projects)
 
     const openModal = () => {
         setIsOpen(!isOpen)
     }
     const { id } = useParams()
 
-    const singleProject = singlePillar.find((item) => item.id === Number(id))
-    console.log('snngle', singlePillar)
+    const fetchSinglePillar = async () => {
+        try {
+            if (userToken) {
+                const res = await axios.get(
+                    `https://spms.telexcoresources.com.ng/api/v1/project/pillar/${id}/view`,
 
-    console.log(pillars)
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${userToken}`
+                        }
+                    }
+                )
+                // console.log('newdataaa', res.data.data)
+                setSinglePillar(res.data.data)
+            }
+        } catch (error) {
+            console.log('errorrrrrrrrrff', error)
+        }
+    }
+    useEffect(() => {
+        fetchSinglePillar()
+    }, [userToken])
+
+    // const singleProject = singlePillar.find((item) => item.id === Number(id))
+    console.log('snngle', typeof singlePillar)
+
+    // console.log(pillars)
 
     return (
         <>
@@ -35,7 +61,7 @@ const Common = () => {
                         >
                             Add New Project
                         </button>
-                        <table className="w-full text-gray-700">
+                        <table className="w-full text-gray-700 mt-9">
                             <thead>
                                 <tr>
                                     <th>Project Name</th>
@@ -47,7 +73,7 @@ const Common = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {projects.map((project) => (
+                                {singlePillar.map((project) => (
                                     <>
                                         <tr className=" w-full">
                                             <td className="">
