@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { projectInfo } from '../data'
 import DetailsModal from './DetailsModal'
 import { useStateContext } from '../context/contextProvider'
 import axiosClient from '../store/axios'
+import axios from 'axios'
 
 const ProjectInfo = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const { projectDetail, pillars } = useStateContext()
+    const { projectDetail, pillars, userToken } = useStateContext()
     const [projectid, setProjectid] = useState('')
     const [name, setName] = useState('')
     const [comment, setComment] = useState('')
+    const [singleDetails, setSingleDetails] = useState([])
 
     console.log('detailssss', projectDetail)
     const { id } = useParams()
@@ -24,12 +26,38 @@ const ProjectInfo = () => {
         setIsOpen(false)
     }
 
+    const fetchSingleDetails = async () => {
+        try {
+            if (userToken) {
+                const res = await axios.get(
+                    `https://spms.telexcoresources.com.ng/api/v1/project/details/${id}/view`,
+
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${userToken}`
+                        }
+                    }
+                )
+                // console.log('newdataaa', res.data.data)
+                setSingleDetails(res.data.data)
+            }
+        } catch (error) {
+            console.log('errorrrrrrrrrff', error)
+        }
+    }
+    useEffect(() => {
+        fetchSingleDetails()
+    }, [userToken])
+
+    console.log('sssssss', singleDetails)
+
     const addComment = async (e) => {
         e.preventDefault()
 
         try {
             const res = await axiosClient.post('v1/comments/add', {
-                projectid,
+                projectid: id,
                 name,
                 comment
             })
@@ -82,8 +110,9 @@ const ProjectInfo = () => {
                             <div>
                                 <label className="font-bold mb-6">Add a Comment</label>
                                 <input
-                                    type="text"
+                                    type="hidden"
                                     name="projectid"
+                                    value={projectid}
                                     placeholder="projectid"
                                     className="w-full p-3 outline-none border border-neutral-600 mt-5 mb-3"
                                     onChange={(e) => setProjectid(e.target.value)}

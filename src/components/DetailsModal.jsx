@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axiosClient from '../store/axios'
 import { AiFillCloseCircle } from 'react-icons/ai'
+import { useParams } from 'react-router-dom'
 
 const DetailsModal = ({ setIsOpen }) => {
     const [projectid, setProjectid] = useState('')
@@ -11,12 +12,15 @@ const DetailsModal = ({ setIsOpen }) => {
         setIsOpen(false)
     }
 
+    const { id } = useParams()
+    console.log('ssdddddddd', id);
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
             const res = await axiosClient.post('/v1/project/details/add', {
-                projectid,
+                projectid: id,
                 indicator,
                 details
             })
@@ -37,11 +41,12 @@ const DetailsModal = ({ setIsOpen }) => {
                 </div>
                 <div className="mt-8">
                     <div className="flex flex-col">
-                        <label className="text-neutral-700 pb-1">Pillar ID</label>
+                        {/* <label className="text-neutral-700 pb-1">Pillar ID</label> */}
                         <input
                             onChange={(e) => setProjectid(e.target.value)}
-                            name="pillarid"
-                            type="text"
+                            name="projectid"
+                            value={projectid}
+                            type="hidden"
                             placeholder="enter pillar id"
                             className="w-full outline-none border border-neutral-500 p-3 mb-4"
                         />
