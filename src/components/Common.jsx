@@ -91,8 +91,8 @@ const Common = () => {
                                             <td> {project.delivery_date}</td>
 
                                             <td>{<Progress completed={project.status} />}</td>
-                                            <td className="flex items-center gap-x-2">
-                                                <button className="bg-blue-700 text-white py-1 px-3">
+                                            <td className="space-x-2">
+                                                <button className=" bg-blue-700 text-white py-1 px-3">
                                                     Add Comment
                                                 </button>
                                                 <button className="bg-green-700 text-white py-1 px-3">
