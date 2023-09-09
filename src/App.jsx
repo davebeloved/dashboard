@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Layout from './components/shared/Layout'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Dashboard from './pages/Dashboard'
 import Pillars from './pages/Pillars'
 import Login from './pages/Login'
@@ -10,6 +11,7 @@ import Common from './components/Common'
 function App() {
     return (
         <Router>
+            <ToastContainer />
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Dashboard />} />

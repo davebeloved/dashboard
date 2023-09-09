@@ -3,6 +3,7 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import { projectInfo, projectStatus } from '../data'
 import axiosClient from '../store/axios'
 import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Modal = ({ setIsOpen }) => {
     const [projectname, setProjectname] = useState('')
@@ -34,9 +35,12 @@ const Modal = ({ setIsOpen }) => {
                 delivery_date
             })
             closeModal()
-            window.location.reload()
-            console.log(res)
-            console.log('success')
+            toast.success('Added a new Project Successfully', { position: 'bottom-center' })
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000)
+            // console.log(res)
+            // console.log('success')
         } catch (error) {
             console.log(error)
         }

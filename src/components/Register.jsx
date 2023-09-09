@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import * as Components from '../Style'
 import axiosClient from '../store/axios'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Register = ({ signIn }) => {
     const [name, setName] = useState('')
@@ -26,8 +27,10 @@ const Register = ({ signIn }) => {
             // _setUserToken(localStorage.setItem('TOKEN', JSON.stringify(data)))
             // _setUserToken(localStorage.setItem('TOKEN', data))
             // setCurrentUser(data)
-
-            window.location.reload()
+            toast.success('Register Successfully, Redirecting to signin', { position: 'top-center' })
+            setTimeout(() => {
+                window.location.reload()
+            }, 2000)
         } catch (error) {
             // console.log(error)
         }

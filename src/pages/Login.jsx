@@ -11,6 +11,7 @@ import axiosClient from '../store/axios'
 import axios from 'axios'
 import Register from '../components/Register'
 import Loader from '../components/Loader'
+import { toast } from 'react-toastify'
 
 const Login = () => {
     const [signIn, toggle] = React.useState(true)
@@ -35,9 +36,13 @@ const Login = () => {
                 email,
                 password
             })
-            console.log('data--', data)
+
             _setUserToken(localStorage.setItem('TOKEN', JSON.stringify(data.token)))
-            window.location.reload()
+            toast.success('Login Successfully, Redirecting to dashboard', { position: 'top-center' })
+            setTimeout(() => {
+                window.location.reload()
+            }, 2000)
+
             // _setUserToken(localStorage.setItem('TOKEN', data.token))
             // setCurrentUser(localStorage.setItem('USER', JSON.stringify(data.user)))
         } catch (error) {
