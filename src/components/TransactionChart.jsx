@@ -85,7 +85,7 @@ export default function TransactionChart() {
                         <XAxis dataKey="name" />
                         <YAxis />
                         <Tooltip />
-                        <Legend />
+                        {/* <Legend /> */}
                         <Bar dataKey="Income" fill="#0ea5e9" />
                         <Bar dataKey="Expense" fill="#ea580c" /> */}
                     </BarChart>
@@ -94,4 +94,3 @@ export default function TransactionChart() {
         </div>
     )
 }
-

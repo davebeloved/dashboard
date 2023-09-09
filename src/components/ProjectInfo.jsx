@@ -5,6 +5,7 @@ import DetailsModal from './DetailsModal'
 import { useStateContext } from '../context/contextProvider'
 import axiosClient from '../store/axios'
 import axios from 'axios'
+import Loader from './Loader'
 
 const ProjectInfo = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -14,6 +15,7 @@ const ProjectInfo = () => {
     const [comment, setComment] = useState('')
     const [singleDetails, setSingleDetails] = useState([])
     const [projectComments, setProjectComments] = useState([])
+    const [loading, setLoading] = useState(false)
 
     console.log('detailssss', projectDetail)
     const { id } = useParams()
@@ -30,6 +32,7 @@ const ProjectInfo = () => {
     const fetchSingleDetails = async () => {
         try {
             if (userToken) {
+                setLoading(true)
                 const res = await axios.get(
                     `https://spms.telexcoresources.com.ng/api/v1/project/details/${id}/view`,
 
@@ -42,6 +45,7 @@ const ProjectInfo = () => {
                 )
                 console.log('newdataaa', res.data.data)
                 setSingleDetails(res.data.data)
+                setLoading(false)
             }
         } catch (error) {
             console.log('errorrrrrrrrrff', error)
@@ -54,6 +58,7 @@ const ProjectInfo = () => {
     const fetchComments = async () => {
         try {
             if (userToken) {
+                setLoading(true)
                 const res = await axios.get(
                     `https://spms.telexcoresources.com.ng/api/v1/comments/${id}/view`,
 
@@ -66,6 +71,7 @@ const ProjectInfo = () => {
                 )
                 console.log('newdataaa', res.data.data)
                 setProjectComments(res.data.data)
+                setLoading(false)
             }
         } catch (error) {
             console.log('errorrrrrrrrrff', error)
@@ -120,17 +126,21 @@ const ProjectInfo = () => {
                                         Add Details
                                     </button>
                                 </thead>
-                                <tbody>
-                                    {singleDetails.map((detail) => {
-                                        const { id, indicator, details } = detail
-                                        return (
-                                            <tr key={id} className="">
-                                                <td>{indicator}</td>
-                                                <td>{details}</td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
+                                {loading ? (
+                                    <Loader />
+                                ) : (
+                                    <tbody>
+                                        {singleDetails.map((detail) => {
+                                            const { id, indicator, details } = detail
+                                            return (
+                                                <tr key={id} className="">
+                                                    <td>{indicator}</td>
+                                                    <td>{details}</td>
+                                                </tr>
+                                            )
+                                        })}
+                                    </tbody>
+                                )}
                             </table>
                         </div>
                         <div className="px-6 py-4">
@@ -165,14 +175,20 @@ const ProjectInfo = () => {
                             <div className="mt-7 ">
                                 <h2 className="font-bold">Project Comments ({projectComments.length})</h2>
 
-                                {projectComments.map((comment) => {
-                                    return (
-                                        <div className="bg-neutral-100 mb-3 p-3">
-                                            <h3 className="font-bold text-lg"> {comment.name}</h3>
-                                            <p className="italic text-gray-600">{comment.comment}</p>
-                                        </div>
-                                    )
-                                })}
+                                {loading ? (
+                                    <Loader />
+                                ) : (
+                                    <>
+                                        {projectComments.map((comment) => {
+                                            return (
+                                                <div className="bg-neutral-100 mb-3 p-3">
+                                                    <h3 className="font-bold text-lg"> {comment.name}</h3>
+                                                    <p className="italic text-gray-600">{comment.comment}</p>
+                                                </div>
+                                            )
+                                        })}
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
