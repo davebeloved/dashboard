@@ -12,6 +12,7 @@ import axios from 'axios'
 import Register from '../components/Register'
 import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
+import { ColorRing } from 'react-loader-spinner'
 
 const Login = () => {
     const [signIn, toggle] = React.useState(true)
@@ -22,8 +23,9 @@ const Login = () => {
     const { token } = useSelector((state) => state.auth)
     // const { userInfo } = useSelector((state) => state.authen)
     const [loginUser, { data, isLoading }] = useLoginUserMutation()
+    const [loading, setLoading] = useState(false)
 
-    const { currentUser, userToken, setCurrentUser, _setUserToken, loading } = useStateContext()
+    const { currentUser, userToken, setCurrentUser, _setUserToken } = useStateContext()
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -32,6 +34,7 @@ const Login = () => {
         e.preventDefault()
         // dispatch(loginUser(login))
         try {
+            setLoading(true)
             const { data } = await axiosClient.post('/login', {
                 email,
                 password
@@ -39,6 +42,7 @@ const Login = () => {
 
             _setUserToken(localStorage.setItem('TOKEN', JSON.stringify(data.token)))
             toast.success('Login Successfully, Redirecting to dashboard', { position: 'top-center' })
+            setLoading(false)
             setTimeout(() => {
                 window.location.reload()
             }, 2000)
@@ -75,7 +79,20 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     {/* <Components.Anchor href="#">Forgot your password?</Components.Anchor> */}
-                    <Components.Button onClick={handleLogin}>{loading ? <Loader /> : 'Sign In'}</Components.Button>
+                    <Components.Button className="" disabled={loading} onClick={handleLogin}>
+                        {loading ? (
+                            <ColorRing
+                                visible={true}
+                                height="20"
+                                width="30"
+                                ariaLabel="blocks-loading"
+                                wrapperClass="blocks-wrappers"
+                                colors={['#e15b64', '#ffff', '#f8b26a', '#abbd81', '#849b87']}
+                            />
+                        ) : (
+                            'Sign In'
+                        )}
+                    </Components.Button>
                 </Components.Form>
             </Components.SignInContainer>
 

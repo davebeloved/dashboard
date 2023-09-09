@@ -28,6 +28,10 @@ body::-webkit-scrollbar {
 .content.open .open-sub {
     height: auto;
 }
+/* 
+.blocks-wrappers {
+    background-color: black;
+} */
 
 @layer base {
     html {
