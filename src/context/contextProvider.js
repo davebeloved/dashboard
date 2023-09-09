@@ -13,6 +13,7 @@ export const StateContextProvider = ({ children }) => {
     const [projects, setProjects] = useState([])
     const [projectDetail, setProjectDetail] = useState([])
     const [singlePillar, setSinglePillar] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const { id } = useParams()
     // console.log('idddd', id);
@@ -20,6 +21,7 @@ export const StateContextProvider = ({ children }) => {
     const fetchData = async () => {
         try {
             if (userToken) {
+                setLoading(true)
                 const res = await axios.get('https://spms.telexcoresources.com.ng/api/v1/pillar/view/all', {
                     headers: {
                         'Content-Type': 'application/json',
@@ -27,8 +29,11 @@ export const StateContextProvider = ({ children }) => {
                     }
                 })
                 setPillars(res.data.data)
+                setLoading(false)
             }
         } catch (error) {
+            setLoading(true)
+
             console.log(error)
         }
     }
@@ -74,8 +79,6 @@ export const StateContextProvider = ({ children }) => {
         fetchProjectDetails()
     }, [userToken])
 
-
-
     // console.log('helloll', singlePillar)
     // console.log('mydata', pillars)
 
@@ -98,7 +101,8 @@ export const StateContextProvider = ({ children }) => {
                 pillars,
                 projects,
                 projectDetail,
-                singlePillar
+                singlePillar,
+                loading
             }}
         >
             {children}

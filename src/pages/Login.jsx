@@ -10,6 +10,7 @@ import { useStateContext } from '../context/contextProvider'
 import axiosClient from '../store/axios'
 import axios from 'axios'
 import Register from '../components/Register'
+import Loader from '../components/Loader'
 
 const Login = () => {
     const [signIn, toggle] = React.useState(true)
@@ -21,7 +22,7 @@ const Login = () => {
     // const { userInfo } = useSelector((state) => state.authen)
     const [loginUser, { data, isLoading }] = useLoginUserMutation()
 
-    const { currentUser, userToken, setCurrentUser, _setUserToken } = useStateContext()
+    const { currentUser, userToken, setCurrentUser, _setUserToken, loading } = useStateContext()
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -69,7 +70,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     {/* <Components.Anchor href="#">Forgot your password?</Components.Anchor> */}
-                    <Components.Button onClick={handleLogin}>Sigin In</Components.Button>
+                    <Components.Button onClick={handleLogin}>{loading ? <Loader /> : 'Sign In'}</Components.Button>
                 </Components.Form>
             </Components.SignInContainer>
 

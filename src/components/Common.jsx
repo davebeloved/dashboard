@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import Modal from './Modal'
 import Progress from './Progress'
 import { projectInfo } from '../data'
 import { useStateContext } from '../context/contextProvider'
 import axios from 'axios'
+import Loader from './Loader'
+import { ColorRing } from 'react-loader-spinner'
 
 const Common = () => {
     const [isOpen, setIsOpen] = useState(false)
     const { projects, pillars, userToken } = useStateContext()
     const [singlePillar, setSinglePillar] = useState([])
+    const [loading, setLoading] = useState(false)
     // console.log('myprojectssss', projects)
+
+    const navigate = useNavigate()
 
     const openModal = () => {
         setIsOpen(!isOpen)
@@ -20,6 +25,7 @@ const Common = () => {
     const fetchSinglePillar = async () => {
         try {
             if (userToken) {
+                setLoading(true)
                 const res = await axios.get(
                     `https://spms.telexcoresources.com.ng/api/v1/project/pillar/${id}/view`,
 
@@ -32,6 +38,7 @@ const Common = () => {
                 )
                 // console.log('newdataaa', res.data.data)
                 setSinglePillar(res.data.data)
+                setLoading(false)
             }
         } catch (error) {
             console.log('errorrrrrrrrrff', error)
@@ -73,37 +80,61 @@ const Common = () => {
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                {singlePillar.map((project) => (
-                                    <>
-                                        <tr className=" w-full">
-                                            <td className="">
-                                                <Link
-                                                    to={`/project_info/${project.id}`}
-                                                    className="text-neutral-600 hover:no-underline"
-                                                >
-                                                    {project.projectname}
-                                                </Link>
-                                            </td>
-                                            <td> {project.contractor}</td>
-                                            <td> {project.amount}</td>
-                                            <td> {project.award_date}</td>
-                                            <td> {project.delivery_date}</td>
+                            {loading ? (
+                                <p className="flex items-center justify-end w-full py-20 pl-20 mr-96">
+                                    <ColorRing
+                                        visible={true}
+                                        height="80"
+                                        width="80"
+                                        ariaLabel="blocks-loading"
+                                        wrapperClass="blocks-wrapper"
+                                        colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                                    />
+                                </p>
+                            ) : (
+                                <tbody>
+                                    {singlePillar.map((project) => (
+                                        <>
+                                            <tr key={project.id} className=" w-full">
+                                                <td className="">
+                                                    <Link
+                                                        to={`/project_info/${project.id}`}
+                                                        className="text-neutral-600 hover:no-underline"
+                                                    >
+                                                        {project.projectname}
+                                                    </Link>
+                                                </td>
+                                                <td> {project.contractor}</td>
+                                                <td> {project.amount}</td>
+                                                <td> {project.award_date}</td>
+                                                <td> {project.delivery_date}</td>
 
-                                            <td>{<Progress completed={project.status} />}</td>
-                                            <td className="space-x-2">
-                                                <button className=" bg-blue-700 text-white py-1 px-3">
-                                                    Add Comment
-                                                </button>
-                                                <button className="bg-green-700 text-white py-1 px-3">
-                                                    Edit Status
-                                                </button>
-                                                <button className="bg-[#FF0000] text-white py-1 px-3">Delete</button>
-                                            </td>
-                                        </tr>
-                                    </>
-                                ))}
-                            </tbody>
+                                                <td>{<Progress completed={project.status} />}</td>
+                                                <td className="space-x-2">
+                                                    <button
+                                                        onClick={() => navigate(`/project_info/${project.id}`)}
+                                                        className=" bg-blue-700 text-white py-1 px-3"
+                                                    >
+                                                        Add Comment
+                                                    </button>
+                                                    <button
+                                                        onClick={() => navigate(`/project_info/${project.id}`)}
+                                                        className="bg-green-700 text-white py-1 px-3"
+                                                    >
+                                                        Edit Status
+                                                    </button>
+                                                    <button
+                                                        onClick={() => navigate(`/project_info/${project.id}`)}
+                                                        className="bg-[#FF0000] text-white py-1 px-3"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </>
+                                    ))}
+                                </tbody>
+                            )}
                         </table>
                     </div>
                 </div>
