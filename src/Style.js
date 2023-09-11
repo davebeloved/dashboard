@@ -9,10 +9,11 @@ const breakpoints = {
     '2xl': '1536px'
 }
 
+
 const devices = {
     xs: `(min-width: ${breakpoints.xs})`,
     sm: `(min-width: ${breakpoints.sm})`,
-    md: `(min-width: ${breakpoints.md})`,
+    md: `(max-width: ${breakpoints.md})`,
     lg: `(min-width: ${breakpoints.lg})`,
     xl: `(min-width: ${breakpoints.xl})`,
     '2xl': `(min-width: ${breakpoints['2xl']})`
@@ -27,15 +28,22 @@ export const Container = styled.div`
     width: 678px;
     max-width: 100%;
     min-height: 400px;
+
+    @media ${devices.md} {
+        width: 470px;
+        min-height: 300px;
+    }
 `
 
 export const SignUpContainer = styled.div`
     position: absolute;
     top: 0;
+
     height: 100%;
     transition: all 0.6s ease-in-out;
     left: 0;
     width: 50%;
+    display: block;
     opacity: 0;
     z-index: 1;
     ${(props) =>
@@ -46,6 +54,8 @@ export const SignUpContainer = styled.div`
     z-index: 5;
   `
             : null}
+    @media ${devices.md} {
+    }
 `
 
 export const SignInContainer = styled.div`
@@ -57,6 +67,9 @@ export const SignInContainer = styled.div`
     width: 50%;
     z-index: 2;
     ${(props) => (props.signinIn !== true ? `transform: translateX(100%);` : null)}
+
+    @media ${devices.md} {
+    }
 `
 
 export const Form = styled.form`
@@ -68,6 +81,10 @@ export const Form = styled.form`
     padding: 0 50px;
     height: 100%;
     text-align: center;
+
+    @media ${devices.md} {
+        padding: 0 20px;
+    }
 `
 
 export const Title = styled.h1`
@@ -81,6 +98,10 @@ export const Input = styled.input`
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
+
+    @media ${devices.md}{
+        padding: 8px 15px;
+    }
 `
 
 export const Button = styled.button`
@@ -103,10 +124,17 @@ export const Button = styled.button`
     &:focus {
         outline: none;
     }
+
+    @media ${devices.md}{
+        padding: 10px 30px;
+    }
 `
 export const GhostButton = styled(Button)`
     background-color: transparent;
     border-color: #ffffff;
+    @media ${devices.md} {
+        padding: 10px 30px;
+    }
 `
 
 export const Anchor = styled.a`
@@ -118,6 +146,7 @@ export const Anchor = styled.a`
 export const OverlayContainer = styled.div`
     position: absolute;
     top: 0;
+
     left: 50%;
     width: 50%;
     height: 100%;
@@ -125,6 +154,9 @@ export const OverlayContainer = styled.div`
     transition: transform 0.6s ease-in-out;
     z-index: 100;
     ${(props) => (props.signinIn !== true ? `transform: translateX(-100%);` : null)}
+
+    @media ${devices.md} {
+    }
 `
 
 export const Overlay = styled.div`
