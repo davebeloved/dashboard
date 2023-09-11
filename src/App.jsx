@@ -7,6 +7,7 @@ import Pillars from './pages/Pillars'
 import Login from './pages/Login'
 import ProjectInfo from './components/ProjectInfo'
 import Common from './components/Common'
+import Register from './components/Register'
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path="project_info/:id" element={<ProjectInfo />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </Router>
     )

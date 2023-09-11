@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import * as Components from '../Style'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser, registerUser } from '../store/authSlice'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useLoginMutation } from '../store/userApiSlice'
 import { setCredentials } from '../store/authenSlice'
 import { useLoginUserMutation } from '../store/apiSlice'
@@ -34,7 +34,6 @@ const Login = () => {
         e.preventDefault()
         // dispatch(loginUser(login))
         try {
-            
             setLoading(true)
             const { data } = await axiosClient.post('/login', {
                 email,
@@ -79,7 +78,6 @@ const Login = () => {
                         placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    {/* <Components.Anchor href="#">Forgot your password?</Components.Anchor> */}
                     <Components.Button className="" disabled={loading} onClick={handleLogin}>
                         {loading ? (
                             <ColorRing
@@ -94,6 +92,10 @@ const Login = () => {
                             'Sign In'
                         )}
                     </Components.Button>
+                    {/* <Components.Anchor href="#">Forgot your password?</Components.Anchor> */}
+                    <p className=" md:hidden italic font-sans text-gray-700">
+                        Do not have an Account yet? <Link to="/register">Register</Link>
+                    </p>
                 </Components.Form>
             </Components.SignInContainer>
 

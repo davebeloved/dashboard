@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const breakpoints = {
     xs: '320px',
@@ -33,10 +34,9 @@ export const Container = styled.div`
         min-height: 300px;
     }
     @media ${devices.sm} {
-        width: 380px;
-        min-height: 300px;
+        width: 300px;
+        min-height: 400px;
     }
-
 `
 
 export const SignUpContainer = styled.div`
@@ -47,7 +47,6 @@ export const SignUpContainer = styled.div`
     transition: all 0.6s ease-in-out;
     left: 0;
     width: 50%;
-    display: block;
     opacity: 0;
     z-index: 1;
     ${(props) =>
@@ -58,7 +57,10 @@ export const SignUpContainer = styled.div`
     z-index: 5;
   `
             : null}
-    @media ${devices.md} {
+    @media ${devices.sm} {
+        width: 100%;
+        transform: translateX(0%);
+        background-color: black;
     }
 `
 
@@ -72,7 +74,8 @@ export const SignInContainer = styled.div`
     z-index: 2;
     ${(props) => (props.signinIn !== true ? `transform: translateX(100%);` : null)}
 
-    @media ${devices.md} {
+    @media ${devices.sm} {
+        width: 100%;
     }
 `
 
@@ -85,9 +88,9 @@ export const Form = styled.form`
     padding: 0 50px;
     height: 100%;
     text-align: center;
-
-    @media ${devices.md} {
-        padding: 0 20px;
+    @media ${devices.sm} {
+        padding: 10px 40px;
+        width: 100%;
     }
 `
 
@@ -129,8 +132,9 @@ export const Button = styled.button`
         outline: none;
     }
 
-    @media ${devices.md} {
+    @media ${devices.sm} {
         padding: 10px 30px;
+        margin: 10px 0;
     }
 `
 export const GhostButton = styled(Button)`
@@ -160,7 +164,8 @@ export const OverlayContainer = styled.div`
     z-index: 100;
     ${(props) => (props.signinIn !== true ? `transform: translateX(-100%);` : null)}
 
-    @media ${devices.md} {
+    @media ${devices.sm} {
+        display: none;
     }
 `
 

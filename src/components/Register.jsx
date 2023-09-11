@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as Components from '../Style'
 import axiosClient from '../store/axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 const Register = ({ signIn }) => {
@@ -31,6 +31,7 @@ const Register = ({ signIn }) => {
             setTimeout(() => {
                 window.location.reload()
             }, 2000)
+            navigate('/login')
         } catch (error) {
             // console.log(error)
         }
@@ -65,6 +66,9 @@ const Register = ({ signIn }) => {
                     onChange={(e) => setPassword_confirmation(e.target.value)}
                 />
                 <Components.Button onClick={handleSubmitSignUp}>Sign Up</Components.Button>
+                <p className=" md:hidden italic font-sans text-gray-700">
+                    Already have an account? <Link to="/login">Signin</Link>
+                </p>
             </Components.Form>
         </Components.SignUpContainer>
     )
