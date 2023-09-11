@@ -9,10 +9,9 @@ const breakpoints = {
     '2xl': '1536px'
 }
 
-
 const devices = {
-    xs: `(min-width: ${breakpoints.xs})`,
-    sm: `(min-width: ${breakpoints.sm})`,
+    xs: `(max-width: ${breakpoints.xs})`,
+    sm: `(max-width: ${breakpoints.sm})`,
     md: `(max-width: ${breakpoints.md})`,
     lg: `(min-width: ${breakpoints.lg})`,
     xl: `(min-width: ${breakpoints.xl})`,
@@ -29,10 +28,15 @@ export const Container = styled.div`
     max-width: 100%;
     min-height: 400px;
 
-    @media ${devices.md} {
-        width: 470px;
+    @media ${devices.xs} {
+        width: 270px;
         min-height: 300px;
     }
+    @media ${devices.sm} {
+        width: 380px;
+        min-height: 300px;
+    }
+
 `
 
 export const SignUpContainer = styled.div`
@@ -99,7 +103,7 @@ export const Input = styled.input`
     margin: 8px 0;
     width: 100%;
 
-    @media ${devices.md}{
+    @media ${devices.md} {
         padding: 8px 15px;
     }
 `
@@ -125,7 +129,7 @@ export const Button = styled.button`
         outline: none;
     }
 
-    @media ${devices.md}{
+    @media ${devices.md} {
         padding: 10px 30px;
     }
 `
@@ -133,7 +137,8 @@ export const GhostButton = styled(Button)`
     background-color: transparent;
     border-color: #ffffff;
     @media ${devices.md} {
-        padding: 10px 30px;
+        padding: 10px 15px;
+        font-size: 12px;
     }
 `
 
