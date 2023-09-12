@@ -15,10 +15,10 @@ export default function Layout() {
     })
 
     return (
-        <div className="bg-neutral-100 h-screen  lg:w-screen overflow-hidden flex ">
+        <div className="bg-neutral-100 w-full h-screen  lg:w-screen overflow-x-hidden flex  ">
             <Sidebar />
 
-            <div className="flex flex-col  overflow-scroll  lg:flex-1 w-full lg:pl-60">
+            <div className="flex flex-col ml-32 md:ml-0 px-10  overflow-y-scroll md:flex-1  lg:pl-60">
                 <Header />
                 <div className="md:flex-1  lg:p-4 lg:min-h-0">
                     <Outlet />

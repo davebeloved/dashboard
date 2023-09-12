@@ -22,6 +22,7 @@ function App() {
                     <Route path="project_info/:id" element={<ProjectInfo />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
+                
                 <Route path="/register" element={<Register />} />
             </Routes>
         </Router>
