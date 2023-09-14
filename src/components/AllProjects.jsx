@@ -7,18 +7,12 @@ import { useStateContext } from '../context/contextProvider'
 import axios from 'axios'
 import Loader from './Loader'
 import { ColorRing } from 'react-loader-spinner'
-import { Bar, Pie } from 'react-chartjs-2'
-import { ArcElement, BarElement, CategoryScale, Chart as ChartJs, Legend, LinearScale, Title, Tooltip } from 'chart.js'
 
-const Common = () => {
+const AllProjects = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const [pillarid, setPillarid] = useState('')
     const [projectstatus, setProjectstatus] = useState('')
-    const [iconic, setIconic] = useState('')
     const { projects, pillars, userToken } = useStateContext()
     const [singlePillar, setSinglePillar] = useState([])
-    const [barchart, setBarchart] = useState([])
-    const [piechart, setPiechart] = useState([])
     const [loading, setLoading] = useState(false)
     // console.log('myprojectssss', projects)
 
@@ -34,9 +28,8 @@ const Common = () => {
             if (userToken) {
                 setLoading(true)
                 const res = await axios.post(
-                    `https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus`,
+                    `https://spms.telexcoresources.com.ng/api/v1/project/pillar`,
                     {
-                        pillarid: id,
                         projectstatus: 'approved'
                     },
 
@@ -48,6 +41,7 @@ const Common = () => {
                     }
                 )
                 // console.log('newdataaa', res.data.data)
+
                 setSinglePillar(res.data.data)
                 setLoading(false)
             }
@@ -64,88 +58,6 @@ const Common = () => {
 
     // console.log(pillars)
 
-    const fetchData = async () => {
-        try {
-            const res = await axios.post(
-                'https://spms.telexcoresources.com.ng/api/v1/project/viewbystatus',
-                {
-                    pillarid: id,
-                    projectstatus: 'approved',
-                    iconic: 'no'
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${userToken}`
-                    }
-                }
-            )
-            setBarchart(res.data.data)
-            // console.log('resssss', res.data.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    const fetchData2 = async () => {
-        try {
-            const res = await axios.post(
-                'https://spms.telexcoresources.com.ng/api/v1/project/viewbystatus',
-                {
-                    pillarid: id,
-                    projectstatus: 'approved',
-                    iconic: 'yes'
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${userToken}`
-                    }
-                }
-            )
-            setPiechart(res.data.data)
-            // console.log('resssss', res.data.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    useEffect(() => {
-        fetchData()
-        fetchData2()
-    }, [])
-
-    // charts
-    ChartJs.register(BarElement, Tooltip, Legend, Title, ArcElement, LinearScale, CategoryScale)
-
-    const datas = {
-        labels: barchart.map((project) => project.projectname),
-        datasets: [
-            {
-                label: barchart.map((project) => project.projectname),
-                backgroundColor: ['#FFBB28', '#1c4e8d', '#ff4b2b', '#00C49F', '#FF8042', '#6a1b9a'],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
-                data: barchart.map((project) => project.status)
-            }
-        ]
-    }
-    const datas2 = {
-        labels: piechart.map((project) => project.projectname),
-        datasets: [
-            {
-                label: 'Monthly Sales',
-                backgroundColor: ['#FFBB28', '#1c4e8d', '#ff4b2b', '#00C49F', '#FF8042', '#6a1b9a'],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
-                data: piechart.map((project) => project.status)
-            }
-        ]
-    }
-
-    console.log('bar', barchart)
-    console.log('pie', piechart)
-
     return (
         <>
             {isOpen ? (
@@ -154,24 +66,13 @@ const Common = () => {
                 <div className="relative pl-44 lg:pl-0 bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
                     <h2 className="text-gray-900 font-bold text-xl pl-2 mb-10 "></h2>
                     <strong className="text-gray-700 pl-2 font-bold">Current Projects</strong>
-                    <div className="w-[400px] flex items-center">
-                        {barchart.length && <Bar data={datas} />}
-                        {piechart.length && <Pie data={datas2} />}
-                    </div>
-                    <input
-                        type="hidden"
-                        name="pillarid"
-                        value={pillarid}
-                        onChange={(e) => setPillarid(e.target.value)}
-                    />
-                    <input type="hidden" name="iconic" value={iconic} onChange={(e) => setIconic(e.target.value)} />
-                    <input
-                        type="hidden"
-                        name="projectstatus"
-                        value={projectstatus}
-                        onChange={(e) => setProjectstatus(e.target.value)}
-                    />
                     <div className=" lg:pl-0 border-x border-gray-200 rounded-sm mt-3 ">
+                        <input
+                            type="hidden"
+                            value={projectstatus}
+                            name="projectstatus"
+                            onChange={(e) => setProjectstatus(e.target.value)}
+                        />
                         <button
                             onClick={openModal}
                             className="text-white bg-green-700 px-6 py-2 absolute right-3 top-16"
@@ -221,15 +122,12 @@ const Common = () => {
 
                                                 <td>{<Progress completed={project.status} />}</td>
                                                 <td className="space-x-2">
-                                                    <button
-                                                        onClick={() => navigate(`/project_info/${project.id}`)}
-                                                        className=" bg-blue-700 text-white py-1 px-3"
-                                                    >
-                                                        Add Comment
+                                                    <button disabled className=" bg-green-700 text-white py-1 px-3">
+                                                        Approved
                                                     </button>
                                                     <button
                                                         onClick={() => navigate(`/project_info/${project.id}`)}
-                                                        className="bg-green-700 text-white py-1 px-3"
+                                                        className=" bg-blue-700 text-white py-1 px-3"
                                                     >
                                                         Edit Status
                                                     </button>
@@ -253,4 +151,4 @@ const Common = () => {
     )
 }
 
-export default Common
+export default AllProjects

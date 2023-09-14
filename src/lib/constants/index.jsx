@@ -9,7 +9,8 @@ import {
     HiOutlineCog
 } from 'react-icons/hi'
 import { GiMucousPillar } from 'react-icons/gi'
-import { AiOutlineProject } from 'react-icons/ai'
+import { FcApproval } from 'react-icons/fc'
+import { AiOutlineProject, AiOutlineVerified } from 'react-icons/ai'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
     {
@@ -63,9 +64,27 @@ export const DASHBOARD_SIDEBAR_LINKS = [
         icon: <GiMucousPillar />
     },
     {
+        key: 'verification',
+        label: 'Awaiting Verification',
+        path: '/awaiting_verification',
+        icon: <AiOutlineVerified />
+    },
+    {
+        key: 'approval',
+        label: 'Awaiting Approval',
+        path: '/awaiting_approval',
+        icon: <FcApproval />
+    },
+    {
         key: 'projects',
         label: 'Project',
-        path: '#',
+        path: '/projects',
+        icon: <AiOutlineProject />
+    },
+    {
+        key: 'chartss',
+        label: 'Chart',
+        path: '/charts',
         icon: <AiOutlineProject />
     }
 ]
@@ -74,13 +93,13 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
     {
         key: 'settings',
         label: 'Settings',
-        path: '/settings',
+        path: '#',
         icon: <HiOutlineCog />
     },
     {
         key: 'support',
         label: 'Help & Support',
-        path: '/support',
+        path: '#',
         icon: <HiOutlineQuestionMarkCircle />
     }
 ]

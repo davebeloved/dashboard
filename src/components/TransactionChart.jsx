@@ -1,5 +1,10 @@
-import React from 'react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import React, { useEffect, useState } from 'react'
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { useStateContext } from '../context/contextProvider'
+import axios from 'axios'
+import { Bar } from 'react-chartjs-2'
+import { BarElement, CategoryScale, Chart as ChartJs, LinearScale } from 'chart.js'
+import { useParams } from 'react-router-dom'
 
 const data = [
     {
@@ -65,32 +70,132 @@ const data = [
 ]
 
 export default function TransactionChart() {
+    const [pillarid, setPillarid] = useState('')
+    const [projectstatus, setProjectstatus] = useState('')
+    const [iconic, setIconic] = useState('')
+    const { userToken, pillars } = useStateContext()
+    const [dataVerify, setDataVerify] = useState([])
+    const [barchart, setBarchart] = useState([])
+    const [approve, setApprove] = useState([])
+    const [newArray, setNewArray] = useState([])
+
+    const approveProject = async () => {
+        try {
+            if (userToken) {
+                const res = await axios.post(
+                    `https://spms.telexcoresources.com.ng/api/v1/project/pillar`,
+                    {
+                        projectstatus: 'approved'
+                    },
+
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${userToken}`
+                        }
+                    }
+                )
+                // console.log('newdataaa', res.data.data)
+
+                setApprove(res.data.data)
+            }
+        } catch (error) {
+            console.log('errorrrrrrrrrff', error)
+        }
+    }
+
+    const fetchData = async () => {
+        try {
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewbystatus',
+                {
+                    pillarid: 4,
+                    projectstatus: 'approved',
+                    iconic: 'no'
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userToken}`
+                    }
+                }
+            )
+            setBarchart(res.data.data)
+            // console.log('resssss', res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        approveProject()
+        fetchData()
+    }, [])
+
+    // console.log('chartttttt', pillars)
+
+    // getting all approved projects
+    console.log('approveddd', approve.length)
+    // console.log('barchattttbar', barchart)
+
+    const pillaridx = pillars.map((item) => item.id)
+
+    ChartJs.register(BarElement, LinearScale, CategoryScale)
+
+    const datas = {
+        labels: pillars.map((pillar) => pillar.pillarname),
+        datasets: [
+            {
+                label: 'Monthly Sales',
+                backgroundColor: pillars.map((colors) => colors.color),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: pillars.map((colors) => colors.color),
+                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
+                data: [2, 4, 4, 3, 1, 5]
+            }
+        ]
+    }
+
+    console.log('charttt', barchart)
     return (
         <div className="h-[22rem] pl-28 lg:pl-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
             <strong className="text-gray-700 pl-5  font-medium">Chart Info</strong>
             <div className="mt-3 w-[400px]  lg:w-full flex-1 text-xs">
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                        width={500}
-                        height={300}
-                        data={data}
-                        margin={{
-                            top: 20,
-                            right: 10,
-                            left: -10,
-                            bottom: 0
-                        }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3 0 0" vertical={false} />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        {/* <Legend /> */}
-                        <Bar dataKey="Income" fill="#0ea5e9" />
-                        <Bar dataKey="Expense" fill="#ea580c" /> 
-                    </BarChart>
-                </ResponsiveContainer>
+                <input type="hidden" name="pillarid" value={pillarid} onChange={(e) => setPillarid(e.target.value)} />
+                <input
+                    type="hidden"
+                    name="projectstatus"
+                    value={projectstatus}
+                    onChange={(e) => setProjectstatus(e.target.value)}
+                />
+                <input type="hidden" name="iconic" value={iconic} onChange={(e) => setIconic(e.target.value)} />
+
+                <Bar data={datas} />
             </div>
         </div>
     )
 }
+
+{
+    /* <ResponsiveContainer width="100%" height="100%">
+    <BarChart
+        width={500}
+        height={300}
+        data={pillars}
+        margin={{
+            top: 20,
+            right: 10,
+            left: -10,
+            bottom: 0
+        }}
+    >
+        <CartesianGrid strokeDasharray="3 3 0 0" vertical={false} />
+        <XAxis dataKey="" />
+        <YAxis />
+        <Tooltip />
+        {/* <Legend /> */
+}
+// <Bar dataKey="pillarname" fill="#0ea5e9" />
+// <Bar dataKey="pillars" fill="#ea580c" />
+// </BarChart>
+// </ResponsiveContainer>
