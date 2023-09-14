@@ -8,7 +8,18 @@ import axios from 'axios'
 import Loader from './Loader'
 import { ColorRing } from 'react-loader-spinner'
 import { Bar, Pie } from 'react-chartjs-2'
-import { ArcElement, BarElement, CategoryScale, Chart as ChartJs, Legend, LinearScale, Title, Tooltip } from 'chart.js'
+
+import {
+    ArcElement,
+    BarElement,
+    CategoryScale,
+    Chart as ChartJs,
+    Legend,
+    LinearScale,
+    Title,
+    Tooltip,
+    plugins
+} from 'chart.js'
 
 const Common = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -133,14 +144,31 @@ const Common = () => {
         labels: piechart.map((project) => project.projectname),
         datasets: [
             {
-                label: 'Monthly Sales',
+                label: piechart.map((project) => project.projectname),
                 backgroundColor: ['#FFBB28', '#1c4e8d', '#ff4b2b', '#00C49F', '#FF8042', '#6a1b9a'],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
+                plugins: ['22', '33'],
+
                 // hoverBorderColor: 'rgba(75, 192, 192, .75)',
                 data: piechart.map((project) => project.status)
             }
         ]
+    }
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        tooltips: {
+            callbacks: {
+                label: (tooltipItem, data) => {
+                    const dataset = data.datasets[tooltipItem.datasetIndex]
+                    const total = dataset.data.reduce((acc, value) => acc + value, 0)
+                    const value = dataset.data[tooltipItem.index]
+                    const percentage = ((value / total) * 100).toFixed(2)
+                    return `${data.labels[tooltipItem.index]}: ${percentage}%`
+                }
+            }
+        }
     }
 
     console.log('bar', barchart)
@@ -153,10 +181,10 @@ const Common = () => {
             ) : (
                 <div className="relative pl-44 lg:pl-0 bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
                     <h2 className="text-gray-900 font-bold text-xl pl-2 mb-10 "></h2>
-                    <strong className="text-gray-700 pl-2 font-bold">Current Projects</strong>
-                    <div className="w-[400px] flex items-center">
-                        {barchart.length && <Bar data={datas} />}
-                        {piechart.length && <Pie data={datas2} />}
+                    <strong className="text-gray-700 pl-2 font-bold">Current Projects Details</strong>
+                    <div className="w-[400px] flex items-center px-5">
+                        {barchart.length && <Bar data={datas} options={options} />}
+                        {piechart.length && <Pie data={datas2} options={options} />}
                     </div>
                     <input
                         type="hidden"
@@ -172,15 +200,15 @@ const Common = () => {
                         onChange={(e) => setProjectstatus(e.target.value)}
                     />
                     <div className=" lg:pl-0 border-x border-gray-200 rounded-sm mt-3 ">
-                        <button
-                            onClick={openModal}
-                            className="text-white bg-green-700 px-6 py-2 absolute right-3 top-16"
-                        >
-                            Add New Project
-                        </button>
-                        <table className="w-full text-gray-700 mt-9">
+                        <table className="w-full relative text-gray-700 mt-9">
                             <thead>
-                                <tr>
+                                <button
+                                    onClick={openModal}
+                                    className="text-white bg-green-700 absolute right-4 -top-7 px-6 py-2"
+                                >
+                                    Add New Project
+                                </button>
+                                <tr className="mt-8">
                                     <th>Project Name</th>
                                     <th>Contractor Name</th>
                                     <th> Amount</th>

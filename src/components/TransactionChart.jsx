@@ -79,6 +79,9 @@ export default function TransactionChart() {
     const [approve, setApprove] = useState([])
     const [newArray, setNewArray] = useState([])
 
+    const projectId = approve.map((id) => id.pillarid)
+    console.log('dddddkkkk', projectId)
+
     const approveProject = async () => {
         try {
             if (userToken) {
@@ -106,13 +109,9 @@ export default function TransactionChart() {
 
     const fetchData = async () => {
         try {
-            const res = await axios.post(
-                'https://spms.telexcoresources.com.ng/api/v1/project/viewbystatus',
-                {
-                    pillarid: 4,
-                    projectstatus: 'approved',
-                    iconic: 'no'
-                },
+            const res = await axios.get(
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/4/noniconic`,
+
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -120,21 +119,27 @@ export default function TransactionChart() {
                     }
                 }
             )
+
+            // setBarchart([...barchart, ...res.data.data])
             setBarchart(res.data.data)
-            // console.log('resssss', res.data.data)
+            console.log('resssss', res.data.data)
         } catch (error) {
             console.log(error)
         }
     }
+
     useEffect(() => {
         approveProject()
-        fetchData()
+        projectId.forEach((item) => {
+            fetchData(item)
+        })
     }, [])
 
     // console.log('chartttttt', pillars)
 
     // getting all approved projects
-    console.log('approveddd', approve.length)
+    console.log('approveddd', approve)
+    console.log('dataaaaaaannnn', barchart)
     // console.log('barchattttbar', barchart)
 
     const pillaridx = pillars.map((item) => item.id)
@@ -145,7 +150,7 @@ export default function TransactionChart() {
         labels: pillars.map((pillar) => pillar.pillarname),
         datasets: [
             {
-                label: 'Monthly Sales',
+                label: 'Projects',
                 backgroundColor: pillars.map((colors) => colors.color),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
