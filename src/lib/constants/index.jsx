@@ -80,13 +80,13 @@ export const DASHBOARD_SIDEBAR_LINKS = [
         label: 'Project',
         path: '/projects',
         icon: <AiOutlineProject />
-    },
-    {
-        key: 'chartss',
-        label: 'Chart',
-        path: '/charts',
-        icon: <AiOutlineProject />
     }
+    // {
+    //     key: 'chartss',
+    //     label: 'Chart',
+    //     path: '/charts',
+    //     icon: <AiOutlineProject />
+    // }
 ]
 
 export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [

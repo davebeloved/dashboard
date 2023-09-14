@@ -62,9 +62,9 @@ const Modal = ({ setIsOpen }) => {
             // const downloadURL = await getDownloadURL(imageRef)
             // console.log('urllllll', downloadURL)
 
-            if (image.name.match(/\.(jpg|jpeg|png|gif)$/)) {
-                alert('good')
-            }
+            // if (image.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+            //     alert('good')
+            // }
 
             const idx = {
                 pillarid: id
