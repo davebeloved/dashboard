@@ -200,7 +200,7 @@ const Common = () => {
                         onChange={(e) => setProjectstatus(e.target.value)}
                     />
                     <div className=" lg:pl-0 border-x border-gray-200 rounded-sm mt-3 ">
-                        <table className="w-full relative text-gray-700 mt-9">
+                        <table className="w-full  relative text-gray-700 mt-9">
                             <thead>
                                 <button
                                     onClick={openModal}
@@ -248,7 +248,7 @@ const Common = () => {
                                                 <td> {project.delivery_date}</td>
 
                                                 <td>{<Progress completed={project.status} />}</td>
-                                                <td className="space-x-2">
+                                                <td className=" grid grid-cols-3 space-x-2">
                                                     <button
                                                         onClick={() => navigate(`/project_info/${project.id}`)}
                                                         className=" bg-blue-700 text-white py-1 px-3"

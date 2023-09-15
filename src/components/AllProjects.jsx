@@ -121,7 +121,7 @@ const AllProjects = () => {
                                                 <td> {project.delivery_date}</td>
 
                                                 <td>{<Progress completed={project.status} />}</td>
-                                                <td className="space-x-2">
+                                                <td className="grid grid-cols-3 space-x-2">
                                                     <button disabled className=" bg-green-700 text-white py-1 px-3">
                                                         Approved
                                                     </button>
