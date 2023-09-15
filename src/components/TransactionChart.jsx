@@ -76,6 +76,11 @@ export default function TransactionChart() {
     const { userToken, pillars } = useStateContext()
     const [dataVerify, setDataVerify] = useState([])
     const [barchart, setBarchart] = useState([])
+    const [barchart2, setBarchart2] = useState([])
+    const [barchart3, setBarchart3] = useState([])
+    const [barchart4, setBarchart4] = useState([])
+    const [barchart5, setBarchart5] = useState([])
+    const [barchart6, setBarchart6] = useState([])
     const [approve, setApprove] = useState([])
     const [newArray, setNewArray] = useState([])
 
@@ -107,7 +112,7 @@ export default function TransactionChart() {
     const fetchData = async (item) => {
         try {
             const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/${item}/noniconic`,
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/4/noniconic`,
 
                 {
                     headers: {
@@ -124,21 +129,133 @@ export default function TransactionChart() {
             console.log(error)
         }
     }
+    const fetchData2 = async (item) => {
+        try {
+            const res = await axios.get(
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/5/noniconic`,
+
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userToken}`
+                    }
+                }
+            )
+
+            // setBarchart([...barchart, ...res.data.data])
+            setBarchart2(res.data.data)
+            // console.log('resssss', res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const fetchData3 = async (item) => {
+        try {
+            const res = await axios.get(
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/6/noniconic`,
+
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userToken}`
+                    }
+                }
+            )
+
+            // setBarchart([...barchart, ...res.data.data])
+            setBarchart3(res.data.data)
+            // console.log('resssss', res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const fetchData4 = async (item) => {
+        try {
+            const res = await axios.get(
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/7/noniconic`,
+
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userToken}`
+                    }
+                }
+            )
+
+            // setBarchart([...barchart, ...res.data.data])
+            setBarchart4(res.data.data)
+            // console.log('resssss', res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const fetchData5 = async (item) => {
+        try {
+            const res = await axios.get(
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/8/noniconic`,
+
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userToken}`
+                    }
+                }
+            )
+
+            // setBarchart([...barchart, ...res.data.data])
+            setBarchart5(res.data.data)
+            // console.log('resssss', res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const fetchData6 = async (item) => {
+        try {
+            const res = await axios.get(
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/9/noniconic`,
+
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userToken}`
+                    }
+                }
+            )
+
+            // setBarchart([...barchart, ...res.data.data])
+            setBarchart6(res.data.data)
+            // console.log('resssss', res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const projectId = approve.map((id) => id.pillarid)
     console.log('dddddkkkk', projectId)
     // projectId.forEach((item) => {
     //     fetchData(item)
     // })
+
     useEffect(() => {
         approveProject()
+        fetchData()
+        fetchData2()
+        fetchData3()
+        fetchData4()
+        fetchData5()
+        fetchData6()
     }, [])
 
     // console.log('chartttttt', pillars)
 
     // getting all approved projects
     console.log('approveddd', approve)
-    // console.log('dataaaaaaannnn', barchart)
+    console.log('dataaaaaaannnn', barchart)
+    console.log('dataaaaaaannnn', barchart2)
+    console.log('dataaaaaaannnn', barchart3)
+    console.log('dataaaaaaannnn', barchart4)
+    console.log('dataaaaaaannnn', barchart5)
+    console.log('dataaaaaaannnn', barchart6)
     // console.log('barchattttbar', barchart)
 
     const pillaridx = pillars.map((item) => item.id)
@@ -155,7 +272,14 @@ export default function TransactionChart() {
                 borderWidth: 1,
                 hoverBackgroundColor: pillars.map((colors) => colors.color),
                 // hoverBorderColor: 'rgba(75, 192, 192, .75)',
-                data: [2, 4, 4, 3, 1, 5]
+                data: [
+                    barchart.length,
+                    barchart2.length,
+                    barchart3.length,
+                    barchart4.length,
+                    barchart5.length,
+                    barchart6.length
+                ]
             }
         ]
     }
