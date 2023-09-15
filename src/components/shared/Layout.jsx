@@ -20,7 +20,7 @@ export default function Layout() {
 
             <div className="flex flex-col ml-32 md:ml-0 px-10  overflow-y-scroll md:flex-1  lg:pl-60">
                 <Header />
-                <div className="md:flex-1  lg:p-4 lg:min-h-0">
+                <div className="md:flex-1   lg:p-4 lg:min-h-0">
                     <Outlet />
                 </div>
             </div>

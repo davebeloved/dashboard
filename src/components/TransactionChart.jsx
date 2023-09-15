@@ -79,9 +79,6 @@ export default function TransactionChart() {
     const [approve, setApprove] = useState([])
     const [newArray, setNewArray] = useState([])
 
-    const projectId = approve.map((id) => id.pillarid)
-    console.log('dddddkkkk', projectId)
-
     const approveProject = async () => {
         try {
             if (userToken) {
@@ -107,10 +104,10 @@ export default function TransactionChart() {
         }
     }
 
-    const fetchData = async () => {
+    const fetchData = async (item) => {
         try {
             const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/4/noniconic`,
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/${item}/noniconic`,
 
                 {
                     headers: {
@@ -122,24 +119,26 @@ export default function TransactionChart() {
 
             // setBarchart([...barchart, ...res.data.data])
             setBarchart(res.data.data)
-            console.log('resssss', res.data.data)
+            // console.log('resssss', res.data.data)
         } catch (error) {
             console.log(error)
         }
     }
 
+    const projectId = approve.map((id) => id.pillarid)
+    console.log('dddddkkkk', projectId)
+    // projectId.forEach((item) => {
+    //     fetchData(item)
+    // })
     useEffect(() => {
         approveProject()
-        projectId.forEach((item) => {
-            fetchData(item)
-        })
     }, [])
 
     // console.log('chartttttt', pillars)
 
     // getting all approved projects
     console.log('approveddd', approve)
-    console.log('dataaaaaaannnn', barchart)
+    // console.log('dataaaaaaannnn', barchart)
     // console.log('barchattttbar', barchart)
 
     const pillaridx = pillars.map((item) => item.id)

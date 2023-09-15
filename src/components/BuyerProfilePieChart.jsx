@@ -66,7 +66,24 @@ export default function BuyerProfilePieChart() {
                         {/* <Legend /> */}
                 {/* </PieChart> */}
                 {/* </ResponsiveContainer> */}
-                <Pie data={datas} />
+                <Pie
+                    data={datas}
+                    options={{
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        tooltips: {
+                            callbacks: {
+                                label: (tooltipItem, data) => {
+                                    const dataset = data.datasets[tooltipItem.datasetIndex]
+                                    const total = dataset.data.reduce((acc, value) => acc + value, 0)
+                                    const value = dataset.data[tooltipItem.index]
+                                    const percentage = ((value / total) * 100).toFixed(2)
+                                    return `${data.labels[tooltipItem.index]}: ${percentage}%`
+                                }
+                            }
+                        }
+                    }}
+                />
             </div>
         </div>
     )
