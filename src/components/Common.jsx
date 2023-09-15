@@ -204,7 +204,7 @@ const Common = () => {
                             <thead>
                                 <button
                                     onClick={openModal}
-                                    className="text-white bg-green-700 absolute right-4 -top-7 px-6 py-2"
+                                    className="text-white bg-green-700 absolute right-4 -top-12 px-6 py-2"
                                 >
                                     Add New Project
                                 </button>
