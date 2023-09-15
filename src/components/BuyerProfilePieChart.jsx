@@ -186,6 +186,8 @@ export default function BuyerProfilePieChart() {
         }
     }
 
+    console.log('-----', barchart)
+
     const projectId = approve.map((id) => id.pillarid)
     console.log('dddddkkkk', projectId)
     // projectId.forEach((item) => {
@@ -223,6 +225,21 @@ export default function BuyerProfilePieChart() {
         ],
         labels: pillars.map((pillar) => pillar.pillarname)
     }
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        tooltips: {
+            callbacks: {
+                label: (tooltipItem, data) => {
+                    const dataset = data.datasets[tooltipItem.datasetIndex]
+                    const total = dataset.data.reduce((acc, value) => acc + value, 0)
+                    const value = dataset.data[tooltipItem.index]
+                    const percentage = ((value / total) * 100).toFixed(2)
+                    return `${data.labels[tooltipItem.index]}: ${percentage}%`
+                }
+            }
+        }
+    }
     return (
         <div className="w-[20rem] h-[22rem] ml-28 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
             <strong className="text-gray-700 font-medium"></strong>
@@ -246,7 +263,7 @@ export default function BuyerProfilePieChart() {
                         {/* <Legend /> */}
                 {/* </PieChart> */}
                 {/* </ResponsiveContainer> */}
-                <Pie data={datas} />
+                <Pie data={datas} options={options} />
             </div>
         </div>
     )

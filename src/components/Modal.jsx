@@ -8,6 +8,7 @@ import { storage } from '../firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { v4 } from 'uuid'
 import axios from 'axios'
+import { ColorRing } from 'react-loader-spinner'
 
 const Modal = ({ setIsOpen }) => {
     const [projectname, setProjectname] = useState('')
@@ -22,6 +23,7 @@ const Modal = ({ setIsOpen }) => {
     const [image, setImage] = useState('')
     const [video, setVideo] = useState('')
     const [iconic, setIconic] = useState('')
+    const [loading, setLoading] = useState(false)
 
     // const [data, setData] = useState({
     //     projectname: '',
@@ -65,7 +67,7 @@ const Modal = ({ setIsOpen }) => {
             // if (image.name.match(/\.(jpg|jpeg|png|gif)$/)) {
             //     alert('good')
             // }
-
+            setLoading(true)
             const idx = {
                 pillarid: id
             }
@@ -103,7 +105,9 @@ const Modal = ({ setIsOpen }) => {
                 formData
             )
             closeModal()
+
             toast.success('Added a new Project Successfully', { position: 'bottom-center' })
+            setLoading(false)
             setTimeout(() => {
                 window.location.reload()
             }, 1000)
@@ -261,12 +265,27 @@ const Modal = ({ setIsOpen }) => {
                         </div>
                     </div>
                     <div className="flex justify-end">
-                        <div className="">
+                        <div className="grid grid-cols-2">
                             <button onClick={closeModal} className="mr-4 bg-red-700 text-white py-2 px-4">
                                 Cancel
                             </button>
-                            <button onClick={handleSubmit} className="bg-green-900 py-2 px-4 text-white">
-                                Submit
+                            <button
+                                onClick={handleSubmit}
+                                disabled={loading}
+                                className="bg-green-900 w-20 flex items-center justify-center py-2 px-4 text-white"
+                            >
+                                {loading ? (
+                                    <ColorRing
+                                        visible={true}
+                                        height="20"
+                                        width="30"
+                                        ariaLabel="blocks-loading"
+                                        wrapperClass="blocks-wrappers"
+                                        colors={['#e15b64', '#ffff', '#f8b26a', '#abbd81', '#849b87']}
+                                    />
+                                ) : (
+                                    'Submit'
+                                )}
                             </button>
                         </div>
                     </div>

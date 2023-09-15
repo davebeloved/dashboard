@@ -99,13 +99,9 @@ const Common = () => {
     }
     const fetchData2 = async () => {
         try {
-            const res = await axios.post(
-                'https://spms.telexcoresources.com.ng/api/v1/project/viewbystatus',
-                {
-                    pillarid: id,
-                    projectstatus: 'approved',
-                    iconic: 'yes'
-                },
+            const res = await axios.get(
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/${id}/iconic`,
+
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -182,10 +178,7 @@ const Common = () => {
                 <div className="relative pl-44 lg:pl-0 bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
                     <h2 className="text-gray-900 font-bold text-xl pl-2 mb-10 "></h2>
                     <strong className="text-gray-700 pl-2 font-bold">Current Projects Details</strong>
-                    <div className="w-[400px] flex items-center px-5">
-                        {barchart.length && <Bar data={datas} options={options} />}
-                        {piechart.length && <Pie data={datas2} options={options} />}
-                    </div>
+
                     <input
                         type="hidden"
                         name="pillarid"
@@ -274,6 +267,21 @@ const Common = () => {
                                 </tbody>
                             )}
                         </table>
+                        <div className="mt-10">
+                            <h2 className="text-xl font-semiboldbold text-center">Chart Details</h2>
+                            <div className=" w-1/2 ml-48  grid grid-cols-2  gap-x-19 ">
+                                {barchart.length && (
+                                    <div className="mt-3 w-[200px]  h-[22rem]  lg:w-full flex-1 text-xs">
+                                        <Bar data={datas} options={options} />
+                                    </div>
+                                )}
+                                {piechart.length && (
+                                    <div className="w-[20rem]  h-[22rem] ml-48 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col ">
+                                        <Pie data={datas2} options={options} />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
