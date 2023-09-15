@@ -134,7 +134,7 @@ const Approved = () => {
                                                     onClick={() => navigate(`/project_info/${project.id}`)}
                                                     className="bg-green-700 text-white py-1 px-3"
                                                 >
-                                                    Edit Status
+                                                    Edit
                                                 </button>
                                                 <button
                                                     onClick={() => navigate(`/project_info/${project.id}`)}
