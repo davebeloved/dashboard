@@ -27,7 +27,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     )
 }
 
-export default function PiechartIconic() {
+export default function Pie5() {
     ChartJs.register(BarElement, ArcElement, LinearScale, CategoryScale)
     const { pillars, userToken } = useStateContext()
     const [approve, setApprove] = useState([])
@@ -62,7 +62,7 @@ export default function PiechartIconic() {
     const fetchData = async (item) => {
         try {
             const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/4/iconic`,
+                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/8/iconic`,
 
                 {
                     headers: {

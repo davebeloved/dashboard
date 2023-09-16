@@ -6,8 +6,13 @@ import { Bar, Pie } from 'react-chartjs-2'
 import { BarElement, CategoryScale, Chart as ChartJs, LinearScale } from 'chart.js'
 import { useParams } from 'react-router-dom'
 import PiechartIconic from './PiechartIconic'
+import Pie2 from './Pie2'
+import Pie3 from './Pie3'
+import Pie4 from './Pie4'
+import Pie5 from './Pie5'
+import Pie6 from './Pie6'
 
-export default function TransactionChart() {
+export default function Charts() {
     const [pillarid, setPillarid] = useState('')
     const [projectstatus, setProjectstatus] = useState('')
     const [iconic, setIconic] = useState('')
@@ -209,6 +214,78 @@ export default function TransactionChart() {
             }
         ]
     }
+
+    const data2 = {
+        labels: barchart2.map((pillar) => pillar.projectname),
+        datasets: [
+            {
+                label: 'Projects',
+                backgroundColor: pillars.map((colors) => colors.color),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: pillars.map((colors) => colors.color),
+                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
+                data: barchart2.map((stat) => stat.status)
+            }
+        ]
+    }
+    const data3 = {
+        labels: barchart3.map((pillar) => pillar.projectname),
+        datasets: [
+            {
+                label: 'Projects',
+                backgroundColor: pillars.map((colors) => colors.color),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: pillars.map((colors) => colors.color),
+                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
+                data: barchart3.map((stat) => stat.status)
+            }
+        ]
+    }
+    const data4 = {
+        labels: barchart4.map((pillar) => pillar.projectname),
+        datasets: [
+            {
+                label: 'Projects',
+                backgroundColor: pillars.map((colors) => colors.color),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: pillars.map((colors) => colors.color),
+                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
+                data: barchart4.map((stat) => stat.status)
+            }
+        ]
+    }
+    const data5 = {
+        labels: barchart5.map((pillar) => pillar.projectname),
+        datasets: [
+            {
+                label: 'Projects',
+                backgroundColor: pillars.map((colors) => colors.color),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: pillars.map((colors) => colors.color),
+                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
+                data: barchart5.map((stat) => stat.status)
+            }
+        ]
+    }
+    const data6 = {
+        labels: barchart6.map((pillar) => pillar.projectname),
+        datasets: [
+            {
+                label: 'Projects',
+                backgroundColor: pillars.map((colors) => colors.color),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                hoverBackgroundColor: pillars.map((colors) => colors.color),
+                // hoverBorderColor: 'rgba(75, 192, 192, .75)',
+                data: barchart6.map((stat) => stat.status)
+            }
+        ]
+    }
+
     const datas2 = {
         labels: barchart.map((project) => project.projectname),
         datasets: [
@@ -241,15 +318,84 @@ export default function TransactionChart() {
 
     console.log('charttt', barchart)
     return (
-        <div className="h-[22rem] pl-28 lg:pl-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
-            <strong className="text-gray-700 pl-5  font-medium">Chart Info</strong>
-            <div className=" w-1/2 flex items-center  gap-x-19 ">
-                <div className="mt-3 w-[100px]    lg:w-full flex-1 text-xs ">
-                    <Bar data={datas} options={options} />
+        <div className=" pl-28 lg:pl-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
+            <strong className="text-gray-700 pl-5 mb-7 font-medium">Chart Info</strong>
+            <div className=" w-full grid grid-cols-2  gap-10  ">
+                <div className="border border-neutral-600 rounded-lg p-4">
+                    <h2 className="text-neutral-500">Youth Development and Job Creation</h2>
+                    <div className="flex items-center">
+                        <div className="mt-3  lg:w-56 ">
+                            <Bar data={datas} options={options} />
+                        </div>
+                        {/* <Pie data={datas2} options={options} /> */}
+                        <div className="w-full  lg:ml-0 ">
+                            <PiechartIconic />
+                        </div>
+                    </div>
                 </div>
-                {/* <Pie data={datas2} options={options} /> */}
-                <div className="w-[20rem]   ml-48 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
-                    <PiechartIconic />
+
+                <div className="border border-neutral-600 rounded-lg p-4">
+                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <div className="flex items-center">
+                        <div className="mt-3  lg:w-56 ">
+                            <Bar data={data2} options={options} />
+                        </div>
+                        {/* <Pie data={datas2} options={options} /> */}
+                        <div className="w-full  lg:ml-0 ">
+                            <Pie2 />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border border-neutral-600 rounded-lg p-4">
+                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <div className="flex items-center">
+                        <div className="mt-3  lg:w-56 ">
+                            <Bar data={data3} options={options} />
+                        </div>
+                        {/* <Pie data={datas2} options={options} /> */}
+                        <div className="w-full  lg:ml-0 ">
+                            <Pie3 />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border border-neutral-600 rounded-lg p-4">
+                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <div className="flex items-center">
+                        <div className="mt-3  lg:w-56 ">
+                            <Bar data={data4} options={options} />
+                        </div>
+                        {/* <Pie data={datas2} options={options} /> */}
+                        <div className="w-full  lg:ml-0 ">
+                            <Pie4 />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border border-neutral-600 rounded-lg p-4">
+                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <div className="flex items-center">
+                        <div className="mt-3  lg:w-56 ">
+                            <Bar data={data5} options={options} />
+                        </div>
+                        {/* <Pie data={datas2} options={options} /> */}
+                        <div className="w-full  lg:ml-0 ">
+                            <Pie5 />
+                        </div>
+                    </div>
+                </div>
+                <div className="border border-neutral-600 rounded-lg p-4">
+                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <div className="flex items-center">
+                        <div className="mt-3  lg:w-56 ">
+                            <Bar data={data6} options={options} />
+                        </div>
+                        {/* <Pie data={datas2} options={options} /> */}
+                        <div className="w-full  lg:ml-0 ">
+                            <Pie6 />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
