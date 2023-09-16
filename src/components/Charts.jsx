@@ -319,7 +319,7 @@ export default function Charts() {
     console.log('charttt', barchart)
     return (
         <div className=" pl-28 lg:pl-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
-            <strong className="text-gray-700 pl-5 mb-7 font-medium">Chart Info</strong>
+            <strong className="text-gray-700 pl-5 mb-7 font-medium">Chart Details</strong>
             <div className=" w-full grid grid-cols-2  gap-10  ">
                 <div className="border border-neutral-600 rounded-lg p-4">
                     <h2 className="text-neutral-500">Youth Development and Job Creation</h2>
