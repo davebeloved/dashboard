@@ -348,7 +348,7 @@ export default function Charts() {
                 </div>
 
                 <div className="border border-neutral-600 rounded-lg p-4">
-                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <h2 className="text-neutral-500"> Agricultural and Rural Development</h2>
                     <div className="flex items-center">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data3} options={options} />
@@ -361,7 +361,7 @@ export default function Charts() {
                 </div>
 
                 <div className="border border-neutral-600 rounded-lg p-4">
-                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <h2 className="text-neutral-500"> Infrastructure and Industralization</h2>
                     <div className="flex items-center">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data4} options={options} />
@@ -374,7 +374,7 @@ export default function Charts() {
                 </div>
 
                 <div className="border border-neutral-600 rounded-lg p-4">
-                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <h2 className="text-neutral-500"> Arts Culture and Tourism</h2>
                     <div className="flex items-center">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data5} options={options} />
@@ -386,7 +386,7 @@ export default function Charts() {
                     </div>
                 </div>
                 <div className="border border-neutral-600 rounded-lg p-4">
-                    <h2 className="text-neutral-500"> Human Capital Development</h2>
+                    <h2 className="text-neutral-500"> Governance</h2>
                     <div className="flex items-center">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data6} options={options} />
