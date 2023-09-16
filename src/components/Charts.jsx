@@ -328,7 +328,7 @@ export default function Charts() {
                             <Bar data={datas} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 pr-16">
+                        <div className="w-full  lg:ml-0 pr-4">
                             <PiechartIconic />
                         </div>
                     </div>
@@ -341,7 +341,7 @@ export default function Charts() {
                             <Bar data={data2} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 pr-16">
+                        <div className="w-full  lg:ml-0 pr-5">
                             <Pie2 />
                         </div>
                     </div>
@@ -354,7 +354,7 @@ export default function Charts() {
                             <Bar data={data3} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 pr-16">
+                        <div className="w-full  lg:ml-0 pr-5">
                             <Pie3 />
                         </div>
                     </div>
@@ -367,7 +367,7 @@ export default function Charts() {
                             <Bar data={data4} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 pr-16">
+                        <div className="w-full  lg:ml-0 pr-5">
                             <Pie4 />
                         </div>
                     </div>
@@ -380,7 +380,7 @@ export default function Charts() {
                             <Bar data={data5} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 pr-16">
+                        <div className="w-full  lg:ml-0 pr-5">
                             <Pie5 />
                         </div>
                     </div>
@@ -392,7 +392,7 @@ export default function Charts() {
                             <Bar data={data6} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 pr-16">
+                        <div className="w-full  lg:ml-0 pr-5">
                             <Pie6 />
                         </div>
                     </div>
