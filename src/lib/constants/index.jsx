@@ -10,7 +10,7 @@ import {
 } from 'react-icons/hi'
 import { GiMucousPillar } from 'react-icons/gi'
 import { FcApproval } from 'react-icons/fc'
-import { AiOutlineProject, AiOutlineVerified } from 'react-icons/ai'
+import { AiOutlineProject, AiOutlineVerified, AiOutlineBarChart } from 'react-icons/ai'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
     {
@@ -57,12 +57,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
     //         }
     //     ]
     // },
-    {
-        key: 'pillars',
-        label: 'Pillars',
-        path: '#',
-        icon: <GiMucousPillar />
-    },
+    // {
+    //     key: 'pillars',
+    //     label: 'Pillars',
+    //     path: '#',
+    //     icon: <GiMucousPillar />
+    // },
     {
         key: 'verification',
         label: 'Awaiting Verification',
@@ -85,7 +85,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
         key: 'chartss',
         label: 'Chart',
         path: '/charts',
-        icon: <AiOutlineProject />
+        icon: <AiOutlineBarChart />
     }
 ]
 
