@@ -323,12 +323,12 @@ export default function Charts() {
             <div className=" w-full grid grid-cols-2  gap-10  ">
                 <div className="border border-neutral-600 rounded-lg p-4">
                     <h2 className="text-neutral-500">Youth Development and Job Creation</h2>
-                    <div className="flex items-center">
+                    <div className="grid grid-cols-2">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={datas} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 ">
+                        <div className="w-full  lg:ml-0 pr-16">
                             <PiechartIconic />
                         </div>
                     </div>
@@ -336,12 +336,12 @@ export default function Charts() {
 
                 <div className="border border-neutral-600 rounded-lg p-4">
                     <h2 className="text-neutral-500"> Human Capital Development</h2>
-                    <div className="flex items-center">
+                    <div className="grid grid-cols-2">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data2} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 ">
+                        <div className="w-full  lg:ml-0 pr-16">
                             <Pie2 />
                         </div>
                     </div>
@@ -349,12 +349,12 @@ export default function Charts() {
 
                 <div className="border border-neutral-600 rounded-lg p-4">
                     <h2 className="text-neutral-500"> Agricultural and Rural Development</h2>
-                    <div className="flex items-center">
+                    <div className="grid grid-cols-2">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data3} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 ">
+                        <div className="w-full  lg:ml-0 pr-16">
                             <Pie3 />
                         </div>
                     </div>
@@ -362,12 +362,12 @@ export default function Charts() {
 
                 <div className="border border-neutral-600 rounded-lg p-4">
                     <h2 className="text-neutral-500"> Infrastructure and Industralization</h2>
-                    <div className="flex items-center">
+                    <div className="grid grid-cols-2">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data4} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 ">
+                        <div className="w-full  lg:ml-0 pr-16">
                             <Pie4 />
                         </div>
                     </div>
@@ -375,24 +375,24 @@ export default function Charts() {
 
                 <div className="border border-neutral-600 rounded-lg p-4">
                     <h2 className="text-neutral-500"> Arts Culture and Tourism</h2>
-                    <div className="flex items-center">
+                    <div className="grid grid-cols-2">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data5} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 ">
+                        <div className="w-full  lg:ml-0 pr-16">
                             <Pie5 />
                         </div>
                     </div>
                 </div>
                 <div className="border border-neutral-600 rounded-lg p-4">
                     <h2 className="text-neutral-500"> Governance</h2>
-                    <div className="flex items-center">
+                    <div className="grid grid-cols-2">
                         <div className="mt-3  lg:w-56 ">
                             <Bar data={data6} options={options} />
                         </div>
                         {/* <Pie data={datas2} options={options} /> */}
-                        <div className="w-full  lg:ml-0 ">
+                        <div className="w-full  lg:ml-0 pr-16">
                             <Pie6 />
                         </div>
                     </div>
