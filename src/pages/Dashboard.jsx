@@ -10,7 +10,9 @@ export default function Dashboard() {
         <div className="flex flex-col gap-4 ">
             <DashboardStatsGrid />
 
-            <div className="flex flex-col lg:flex-row lg:pl-10 gap-4 w-full">
+            <div className="charts">
+                {/* 
+            <div className="flex flex-col lg:flex-row lg:pl-10 gap-4 w-full"> */}
                 <TransactionChart />
                 <BuyerProfilePieChart />
             </div>

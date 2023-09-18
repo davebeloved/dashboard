@@ -281,10 +281,10 @@ export default function TransactionChart() {
 
     console.log('charttt', barchart)
     return (
-        <div className="charts">
-            {/* <div className="h-[22rem]  bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1"> */}
+        // <div className="charts">
+        <div className="h-[22rem]  bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
             <strong className="text-gray-700 pl-5  font-medium">Chart Info</strong>
-            <div className="mt-3 w-[400px]  lg:w-full flex-1 text-xs">
+            <div className="mt-3  lg:w-full flex-1 text-xs">
                 <input type="hidden" name="pillarid" value={pillarid} onChange={(e) => setPillarid(e.target.value)} />
                 <input
                     type="hidden"
