@@ -7,10 +7,10 @@ import PopularProducts from '../components/PopularProducts'
 
 export default function Dashboard() {
     return (
-        <div className="flex flex-col gap-4 px-20 lg:px-0 lg:pl-0">
+        <div className="flex flex-col gap-4 ">
             <DashboardStatsGrid />
 
-            <div className="flex flex-col lg:flex-row lg:pl-10 gap-4 lg:w-full">
+            <div className="flex flex-col lg:flex-row lg:pl-10 gap-4 w-full">
                 <TransactionChart />
                 <BuyerProfilePieChart />
             </div>

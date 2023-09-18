@@ -250,12 +250,7 @@ export default function TransactionChart() {
 
     // getting all approved projects
     console.log('approveddd', approve)
-    console.log('dataaaaaaannnn', barchart)
-    console.log('dataaaaaaannnn', barchart2)
-    console.log('dataaaaaaannnn', barchart3)
-    console.log('dataaaaaaannnn', barchart4)
-    console.log('dataaaaaaannnn', barchart5)
-    console.log('dataaaaaaannnn', barchart6)
+
     // console.log('barchattttbar', barchart)
 
     const pillaridx = pillars.map((item) => item.id)
@@ -286,7 +281,8 @@ export default function TransactionChart() {
 
     console.log('charttt', barchart)
     return (
-        <div className="h-[22rem] pl-28 lg:pl-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
+        <div className="charts">
+            {/* <div className="h-[22rem]  bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1"> */}
             <strong className="text-gray-700 pl-5  font-medium">Chart Info</strong>
             <div className="mt-3 w-[400px]  lg:w-full flex-1 text-xs">
                 <input type="hidden" name="pillarid" value={pillarid} onChange={(e) => setPillarid(e.target.value)} />

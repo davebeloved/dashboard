@@ -13,14 +13,20 @@ export default function Layout() {
             navigate('/login')
         }
     })
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
+
+    const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+    }
 
     return (
         <div className="bg-neutral-100 w-full h-screen  lg:w-screen overflow-x-hidden flex  ">
-            <Sidebar />
+            <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
 
-            <div className="flex  flex-col  md:ml-0  lg:ml-  overflow-y-scroll md:flex-1  lg:pl-60">
-                <Header />
-                <div className="md:flex-1   lg:p-4 lg:min-h-0">
+            <div className="flex  flex-col overflow-y-scroll md:flex-1">
+                <Header OpenSidebar={OpenSidebar} />
+                <div className="main-container">
+                    {/* <div className="md:flex-1 lg:p-4 lg:min-h-0"> */}
                     <Outlet />
                 </div>
             </div>
