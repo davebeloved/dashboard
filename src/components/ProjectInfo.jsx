@@ -173,7 +173,7 @@ const ProjectInfo = () => {
                                 </button>
                             </div>
                             <div className="mt-7 ">
-                                <h2 className="font-bold">Project Comments ({projectComments.length})</h2>
+                                <h2 className="font-bold text-black">Project Comments ({projectComments.length})</h2>
 
                                 {loading ? (
                                     <Loader />
@@ -182,7 +182,7 @@ const ProjectInfo = () => {
                                         {projectComments.map((comment) => {
                                             return (
                                                 <div className="bg-neutral-100 mb-3 p-3">
-                                                    <h3 className="font-bold text-lg"> {comment.name}</h3>
+                                                    <h3 className="font-bold text-lg text-black"> {comment.name}</h3>
                                                     <p className="italic text-gray-600">{comment.comment}</p>
                                                 </div>
                                             )

@@ -123,12 +123,32 @@ const Common = () => {
     // charts
     ChartJs.register(BarElement, Tooltip, Legend, Title, ArcElement, LinearScale, CategoryScale)
 
+    const colors = [
+        {
+            color: 'FFBB28'
+        },
+        {
+            color: '1c4e8d'
+        },
+        {
+            color: 'ff4b2b'
+        },
+        {
+            color: '00C49F'
+        },
+        {
+            color: 'FF8042'
+        },
+        {
+            color: '6a1b9a'
+        }
+    ]
     const datas = {
         labels: barchart.map((project) => project.projectname),
         datasets: [
             {
                 label: barchart.map((project) => project.projectname),
-                backgroundColor: ['#FFBB28', '#1c4e8d', '#ff4b2b', '#00C49F', '#FF8042', '#6a1b9a'],
+                backgroundColor: pillars.map((colors) => colors.color),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
                 // hoverBorderColor: 'rgba(75, 192, 192, .75)',
@@ -141,7 +161,7 @@ const Common = () => {
         datasets: [
             {
                 label: piechart.map((project) => project.projectname),
-                backgroundColor: ['#FFBB28', '#1c4e8d', '#ff4b2b', '#00C49F', '#FF8042', '#6a1b9a'],
+                backgroundColor: pillars.map((colors) => colors.color),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
                 plugins: ['22', '33'],
@@ -151,29 +171,26 @@ const Common = () => {
             }
         ]
     }
+
     const options = {
         plugins: {
             legend: {
                 display: true,
+                position: 'top',
                 labels: {
-                    padding: 100
+                    padding: 10,
+                    boxHeight: 50,
                 }
             }
         },
-
-        responsive: true,
-        maintainAspectRatio: false,
-        tooltips: {
-            callbacks: {
-                label: (tooltipItem, data) => {
-                    const dataset = data.datasets[tooltipItem.datasetIndex]
-                    const total = dataset.data.reduce((acc, value) => acc + value, 0)
-                    const value = dataset.data[tooltipItem.index]
-                    const percentage = ((value / total) * 100).toFixed(2)
-                    return `${data.labels[tooltipItem.index]}: ${percentage}%`
-                }
+        layout: {
+            padding: {
+                top: 10
+                // bottom : 10
             }
-        }
+        },
+        responsive: true,
+        maintainAspectRatio: false
     }
 
     console.log('bar', barchart)
