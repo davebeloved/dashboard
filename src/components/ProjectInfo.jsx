@@ -145,27 +145,27 @@ const ProjectInfo = () => {
                         </div>
                         <div className="px-6 py-4">
                             <div>
-                                <label className="font-bold mb-6">Add a Comment</label>
+                                <label className="font-bold mb-6 text-black">Add a Comment</label>
                                 <input
                                     type="hidden"
                                     name="projectid"
                                     value={projectid}
                                     placeholder="projectid"
-                                    className="w-full p-3 outline-none border border-neutral-600 mt-5 mb-3"
+                                    className="w-full p-3 outline-none border border-neutral-600 mt-5 mb-3 text-black"
                                     onChange={(e) => setProjectid(e.target.value)}
                                 />
                                 <input
                                     type="text"
                                     name="name"
                                     placeholder="Enter your Name"
-                                    className="w-full p-3 outline-none border border-neutral-600 mb-3"
+                                    className="w-full p-3 outline-none border text-black border-neutral-600 mb-3"
                                     onChange={(e) => setName(e.target.value)}
                                 />
                                 <textarea
                                     type="text"
                                     name="comment"
                                     placeholder="Enter your comment"
-                                    className="w-full p-3 outline-none border border-neutral-600 mb-4"
+                                    className="w-full p-3 outline-none border text-black border-neutral-600 mb-4"
                                     onChange={(e) => setComment(e.target.value)}
                                 ></textarea>
                                 <button onClick={addComment} className="bg-gray-600 py-2 px-5 text-white">

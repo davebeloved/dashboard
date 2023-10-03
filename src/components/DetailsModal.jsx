@@ -13,7 +13,7 @@ const DetailsModal = ({ setIsOpen }) => {
     }
 
     const { id } = useParams()
-    console.log('ssdddddddd', id);
+    console.log('ssdddddddd', id)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -48,7 +48,7 @@ const DetailsModal = ({ setIsOpen }) => {
                             value={projectid}
                             type="hidden"
                             placeholder="enter pillar id"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1">Indicator Name</label>
                         <input
@@ -56,7 +56,7 @@ const DetailsModal = ({ setIsOpen }) => {
                             name="indicator"
                             type="text"
                             placeholder="enter indicator name"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1">Project Details</label>
                         <input
@@ -64,7 +64,7 @@ const DetailsModal = ({ setIsOpen }) => {
                             name="details"
                             type="text"
                             placeholder="enter project details"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                     </div>
 
