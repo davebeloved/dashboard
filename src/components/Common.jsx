@@ -152,6 +152,15 @@ const Common = () => {
         ]
     }
     const options = {
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    padding: 100
+                }
+            }
+        },
+
         responsive: true,
         maintainAspectRatio: false,
         tooltips: {
@@ -267,20 +276,20 @@ const Common = () => {
                                 </tbody>
                             )}
                         </table>
-                        <div className="mt-10">
-                            <h2 className="text-xl font-semiboldbold text-center">Chart Details</h2>
-                            <div className=" w-1/2 ml-48  grid grid-cols-2  gap-x-19 ">
-                                {barchart.length && (
-                                    <div className="mt-3 w-[200px]  h-[22rem]  lg:w-full flex-1 text-xs">
-                                        <Bar data={datas} options={options} />
-                                    </div>
-                                )}
-                                {piechart.length && (
-                                    <div className="w-[20rem]  h-[22rem] ml-48 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col ">
-                                        <Pie data={datas2} options={options} />
-                                    </div>
-                                )}
-                            </div>
+                    </div>
+                    <div className="mt-10">
+                        <h2 className="text-xl font-semiboldbold text-black text-center">Chart Details</h2>
+                        <div className=" w-full flex justify-between ">
+                            {barchart.length && (
+                                <div className="mt-3 w-[48%] gap-x-4  h-[22rem] py-5 flex-1 text-xs">
+                                    <Bar data={datas} options={options} />
+                                </div>
+                            )}
+                            {piechart.length && (
+                                <div className="w-1/2  h-[22rem] ml-48 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col ">
+                                    <Pie data={datas2} options={options} />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
