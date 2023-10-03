@@ -136,7 +136,7 @@ const Modal = ({ setIsOpen }) => {
                             value={pillarid}
                             type="hidden"
                             placeholder="enter pillar id"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1">Project Name</label>
                         <input
@@ -146,7 +146,7 @@ const Modal = ({ setIsOpen }) => {
                             type="text"
                             value={projectname}
                             placeholder="enter project name"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1">Contractor Name</label>
                         <input
@@ -156,7 +156,7 @@ const Modal = ({ setIsOpen }) => {
                             type="text"
                             value={contractor}
                             placeholder="Contractor Name"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1"> Amount</label>
                         <input
@@ -166,7 +166,7 @@ const Modal = ({ setIsOpen }) => {
                             type="number"
                             value={amount}
                             placeholder="Enter Amount"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1"> LGA</label>
                         <input
@@ -176,7 +176,7 @@ const Modal = ({ setIsOpen }) => {
                             type="text"
                             value={lga}
                             placeholder="Enter Amount"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1"> Weight</label>
                         <input
@@ -186,7 +186,7 @@ const Modal = ({ setIsOpen }) => {
                             type="number"
                             value={weight}
                             placeholder="Enter weight"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1"> Upload Image</label>
                         <input
@@ -198,7 +198,7 @@ const Modal = ({ setIsOpen }) => {
                             accept="image/*"
                             multiple
                             type="file"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1"> Upload Video</label>
                         <input
@@ -207,7 +207,7 @@ const Modal = ({ setIsOpen }) => {
                             name="video"
                             accept="video/mp4,video/x-m4v,video/*"
                             type="file"
-                            className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1">Iconic</label>
                         <select
@@ -215,7 +215,7 @@ const Modal = ({ setIsOpen }) => {
                             onChange={(e) => setIconic(e.target.value)}
                             name="iconic"
                             value={iconic}
-                            className="border border-neutral-700 p-2 w-48 outline-none mb-5"
+                            className="border border-neutral-700 p-2 w-48 outline-none mb-5 text-black"
                         >
                             <option>select</option>
                             <option>yes</option>
@@ -230,12 +230,12 @@ const Modal = ({ setIsOpen }) => {
                         value={status}
                         name="status"
                         id="status"
-                        className="border border-neutral-700 p-2 w-48 outline-none mb-5"
+                        className="border border-neutral-700 p-2 w-48 outline-none mb-5 text-black"
                     >
                         {projectStatus.map((status) => {
                             const { value } = status
 
-                            return <option>{value}</option>
+                            return <option className="text-black">{value}</option>
                         })}
                     </select>
                     <div className="flex items-center gap-x-5 mb-10">
@@ -248,7 +248,7 @@ const Modal = ({ setIsOpen }) => {
                                 value={award_date}
                                 type="date"
                                 placeholder="Award Date"
-                                className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                                className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                             />
                         </div>
                         <div>

@@ -223,7 +223,7 @@ export default function BuyerProfilePieChart() {
                 ]
             }
         ],
-        labels: pillars.map((pillar) => pillar.pillarname)
+        labels: pillars.map((pillar) => pillar.pillarname.substring(0, 5))
     }
     const options = {
         responsive: true,
@@ -241,9 +241,9 @@ export default function BuyerProfilePieChart() {
         }
     }
     return (
-        <div className="w-[20rem] h-[22rem]  lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
+        <div className="w-[26rem] lg:w-full h-[22rem] mb-10 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
             {/* <div className="w-[20rem] h-[22rem] ml-28 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col"> */}
-            <strong className="text-gray-700 font-medium"></strong>
+            <strong className="text-gray-700 font-medium">Pie Chart</strong>
             <div className="mt-3 w-full flex-1 text-xs">
                 {/* <ResponsiveContainer width="100%" height="100%">
                     <PieChart width={400} height={300}>

@@ -258,7 +258,8 @@ export default function TransactionChart() {
     ChartJs.register(BarElement, LinearScale, CategoryScale)
 
     const datas = {
-        labels: pillars.map((pillar) => pillar.pillarname),
+        // labels: ['1', '2', '3', '4', '5', '6'],
+        labels: pillars.map((pillar) => pillar.pillarname.substring(0, 5)),
         datasets: [
             {
                 label: 'Projects',
@@ -282,7 +283,7 @@ export default function TransactionChart() {
     console.log('charttt', barchart)
     return (
         // <div className="charts">
-        <div className="h-[22rem]  bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
+        <div className="w-[22rem] lg:w-full bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
             <strong className="text-gray-700 pl-5  font-medium">Chart Info</strong>
             <div className="mt-3  lg:w-full flex-1 text-xs">
                 <input type="hidden" name="pillarid" value={pillarid} onChange={(e) => setPillarid(e.target.value)} />

@@ -44,7 +44,7 @@ export default function Sidebar({ openSidebarToggle, OpenSidebar }) {
                             <SidebarLink key={link.key} link={link} />
                         ))}
                     </div>
-                    <div className="flex flex-col gap-0.5   border-t border-neutral-700">
+                    <div className="flex flex-col gap-0.5   border-t border-neutral-600">
                         {DASHBOARD_SIDEBAR_BOTTOM_LINKS.map((link) => (
                             <SidebarLink key={link.key} link={link} />
                         ))}
