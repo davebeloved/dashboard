@@ -27,6 +27,8 @@ export const Container = styled.div`
     position: relative;
     overflow: hidden;
     width: 678px;
+    margin: auto;
+    margin-top: 100px;
     max-width: 100%;
     min-height: 400px;
 
