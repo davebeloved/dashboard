@@ -259,7 +259,8 @@ export default function TransactionChart() {
 
     const datas = {
         // labels: ['1', '2', '3', '4', '5', '6'],
-        labels: pillars.map((pillar) => pillar.pillarname.substring(0, 5)),
+        labels: pillars.map((pillar) => pillar.pillarname),
+        // labels: pillars.map((pillar) => pillar.pillarname.substring(0, 5)),
         datasets: [
             {
                 label: 'Projects',

@@ -26,6 +26,9 @@ export const Container = styled.div`
     position: relative;
     overflow: hidden;
     width: 678px;
+    display: flex;
+    justify-content: center;
+    items
     max-width: 100%;
     min-height: 400px;
 

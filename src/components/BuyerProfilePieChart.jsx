@@ -223,7 +223,8 @@ export default function BuyerProfilePieChart() {
                 ]
             }
         ],
-        labels: pillars.map((pillar) => pillar.pillarname.substring(0, 5))
+        labels: pillars.map((pillar) => pillar.pillarname)
+        // labels: pillars.map((pillar) => pillar.pillarname.substring(0, 5))
     }
     const options = {
         responsive: true,
