@@ -260,7 +260,7 @@ const Modal = ({ setIsOpen }) => {
                                 value={delivery_date}
                                 type="date"
                                 placeholder="Delivery Date"
-                                className="w-full outline-none border border-neutral-500 p-3 mb-4"
+                                className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                             />
                         </div>
                     </div>
