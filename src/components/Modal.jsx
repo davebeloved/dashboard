@@ -240,7 +240,7 @@ const Modal = ({ setIsOpen }) => {
                     </select>
                     <div className="flex items-center gap-x-5 mb-10">
                         <div>
-                            <label>Award Date</label>
+                            <label className="text-black">Award Date</label>
                             <input
                                 // onChange={handleChange}
                                 onChange={(e) => setAward_date(e.target.value)}
@@ -252,7 +252,7 @@ const Modal = ({ setIsOpen }) => {
                             />
                         </div>
                         <div>
-                            <label>Delivery Date</label>
+                            <label className="text-black">Delivery Date</label>
                             <input
                                 // onChange={handleChange}
                                 onChange={(e) => setDelivery_date(e.target.value)}
