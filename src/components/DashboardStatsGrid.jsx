@@ -23,7 +23,6 @@ import Loader from './Loader'
 export default function DashboardStatsGrid() {
     const navigate = useNavigate()
     const { userToken, pillars, loading } = useStateContext()
-    console.log(pillars)
 
     return (
         <>

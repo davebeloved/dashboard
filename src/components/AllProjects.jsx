@@ -40,7 +40,7 @@ const AllProjects = () => {
                         }
                     }
                 )
-                // console.log('newdataaa', res.data.data)
+                // console.log('priorityyyyyy', res.data.data)
 
                 setSinglePillar(res.data.data)
                 setLoading(false)
@@ -73,12 +73,12 @@ const AllProjects = () => {
                             name="projectstatus"
                             onChange={(e) => setProjectstatus(e.target.value)}
                         />
-                        <button
+                        {/* <button
                             onClick={openModal}
                             className="text-white bg-green-700 px-6 py-2 absolute right-3 top-16"
                         >
                             Add New Project
-                        </button>
+                        </button> */}
                         <table className="w-full text-gray-700 mt-9">
                             <thead>
                                 <tr>
@@ -106,11 +106,22 @@ const AllProjects = () => {
                                 <tbody>
                                     {singlePillar.map((project) => (
                                         <>
-                                            <tr key={project.id} className=" w-full">
-                                                <td className="">
+                                            <tr
+                                                key={project.id}
+                                                className={
+                                                    project.iconic === 'yes'
+                                                        ? 'bg-red-100 text-[#D1D100] font-semibold mb-9'
+                                                        : 'mb-7'
+                                                }
+                                            >
+                                                <td className={project.iconic === 'yes' ? 'text-yellow-700' : ''}>
                                                     <Link
                                                         to={`/project_info/${project.id}`}
-                                                        className="text-neutral-600 hover:no-underline"
+                                                        className={
+                                                            project.iconic === 'yes'
+                                                                ? 'text-[#D1D100] font-semibold hover:no-underline'
+                                                                : 'hover:no-underline text-black'
+                                                        }
                                                     >
                                                         {project.projectname}
                                                     </Link>
@@ -122,8 +133,11 @@ const AllProjects = () => {
 
                                                 <td>{<Progress completed={project.status} />}</td>
                                                 <td className="grid grid-cols-3 space-x-2">
-                                                    <button disabled className=" bg-green-700 text-white py-1 px-3">
-                                                        Approved
+                                                    <button
+                                                        onClick={() => navigate(`/project_info/${project.id}`)}
+                                                        className=" bg-green-700 text-white py-1 px-3"
+                                                    >
+                                                        View
                                                     </button>
                                                     <button
                                                         onClick={() => navigate(`/project_info/${project.id}`)}

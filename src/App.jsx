@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, HashRouter } from 'react-router-dom'
 import Layout from './components/shared/Layout'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -16,7 +16,7 @@ import Charts from './components/Charts'
 
 function App() {
     return (
-        <Router>
+        <HashRouter>
             <ToastContainer />
             <Routes>
                 <Route path="/" element={<Layout />}>
@@ -33,7 +33,7 @@ function App() {
 
                 <Route path="/register" element={<Register />} />
             </Routes>
-        </Router>
+        </HashRouter>
     )
 }
 

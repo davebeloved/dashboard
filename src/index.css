@@ -282,3 +282,15 @@ body::-webkit-scrollbar {
         @apply text-sky-500 hover:underline;
     }
 }
+
+.toggle-switch__line {
+    transition: 0.2s;
+}
+
+.toggle-switch__dot {
+    transition: 0.2s;
+}
+
+.toggle-switch__dot.translate-x-6 {
+    transform: translateX(1.75rem); 
+}

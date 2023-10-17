@@ -25,6 +25,10 @@ const Modal = ({ setIsOpen }) => {
     const [iconic, setIconic] = useState('')
     const [loading, setLoading] = useState(false)
 
+
+    const { id } = useParams()
+
+
     // const [data, setData] = useState({
     //     projectname: '',
     //     pillarid: '',
@@ -46,7 +50,6 @@ const Modal = ({ setIsOpen }) => {
 
     console.log('imageeeee', image)
     console.log('imageeeee', video)
-    const { id } = useParams()
     console.log('myyyyyyyyy', id)
 
     const handleSubmit = async (e) => {
@@ -71,6 +74,9 @@ const Modal = ({ setIsOpen }) => {
             const idx = {
                 pillarid: id
             }
+            const iconics = {
+                iconic: 'no'
+            }
 
             const formData = new FormData()
             formData.append('pillarid', idx.pillarid)
@@ -81,7 +87,7 @@ const Modal = ({ setIsOpen }) => {
             formData.append('weight', weight)
             formData.append('image', image)
             formData.append('video', video)
-            formData.append('iconic', iconic)
+            formData.append('iconic', iconics.iconic)
             formData.append('status', status)
             formData.append('award_date', award_date)
             formData.append('delivery_date', delivery_date)
@@ -114,7 +120,7 @@ const Modal = ({ setIsOpen }) => {
             console.log(res)
             console.log('success')
         } catch (error) {
-            console.log(error)
+            console.log(error.response.data)
         }
     }
 
@@ -136,6 +142,15 @@ const Modal = ({ setIsOpen }) => {
                             value={pillarid}
                             type="hidden"
                             placeholder="enter pillar id"
+                            className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
+                        />
+                        <input
+                            // onChange={handleChange}
+                            onChange={(e) => setIconic(e.target.value)}
+                            name="iconic"
+                            value={iconic}
+                            type="hidden"
+                            placeholder="iconic"
                             className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
                         <label className="text-neutral-700 pb-1">Project Name</label>
@@ -209,18 +224,19 @@ const Modal = ({ setIsOpen }) => {
                             type="file"
                             className="w-full outline-none border border-neutral-500 p-3 mb-4 text-black"
                         />
-                        <label className="text-neutral-700 pb-1">Iconic</label>
-                        <select
+                        {/* <label className="text-neutral-700 pb-1">Iconic</label> */}
+                        {/* <select
                             // onChange={handleChange}
                             onChange={(e) => setIconic(e.target.value)}
                             name="iconic"
                             value={iconic}
+                            type = 'hidden'
                             className="border border-neutral-700 p-2 w-48 outline-none mb-5 text-black"
                         >
                             <option>select</option>
                             <option>yes</option>
                             <option>no</option>
-                        </select>
+                        </select> */}
                     </div>
                     <label className="text-neutral-700 pb-1">Status</label>
                     <br></br>

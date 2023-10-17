@@ -8,10 +8,13 @@ import {
     HiOutlineQuestionMarkCircle,
     HiOutlineCog
 } from 'react-icons/hi'
+import { FcDisapprove } from 'react-icons/fc'
 import { GiMucousPillar } from 'react-icons/gi'
-import { FcApproval } from 'react-icons/fc'
+import { FcApproval, FcApprove } from 'react-icons/fc'
 import { AiOutlineProject, AiOutlineVerified, AiOutlineBarChart } from 'react-icons/ai'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faHexagonCheck} from 'react-icons/fa'
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons'
 export const DASHBOARD_SIDEBAR_LINKS = [
     {
         key: 'dashboard',
@@ -67,19 +70,25 @@ export const DASHBOARD_SIDEBAR_LINKS = [
         key: 'verification',
         label: 'Awaiting Verification',
         path: '/awaiting_verification',
-        icon: <AiOutlineVerified />
+        icon: (
+            <FontAwesomeIcon
+                icon={faCircleCheck}
+                style={{ color: '#fff' }}
+                className="bg-[#b52a12] rounded-full border-none"
+            />
+        )
     },
     {
         key: 'approval',
         label: 'Awaiting Approval',
         path: '/awaiting_approval',
-        icon: <FcApproval />
+        icon: <FontAwesomeIcon icon={faCircleCheck} style={{ color: '#fff' }} className="bg-[#dfc30c] rounded-full" />
     },
     {
         key: 'projects',
-        label: 'Project',
+        label: 'Approved Project',
         path: '/projects',
-        icon: <AiOutlineProject />
+        icon: <FontAwesomeIcon icon={faCircleCheck} style={{ color: '#fff' }} className="bg-[#31c110] rounded-full" />
     },
     {
         key: 'chartss',
