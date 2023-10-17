@@ -393,7 +393,7 @@ const ProjectInfo = () => {
                     </div>
                     <div className="px-6 py-4 -mt-10">
                         <div className="mt-7 mb-5 ">
-                            <h2 className="bg-[#F5F5F5] py-3 pl-2 font-bold text-black">
+                            <h2 className="bg-[#F5F5F5] py-3 pl-2 font-bold text-black mb-3">
                                 Project Comments ({projectComments.length})
                             </h2>
 
