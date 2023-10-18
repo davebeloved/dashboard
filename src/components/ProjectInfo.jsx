@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { projectInfo } from '../data'
 import DetailsModal from './DetailsModal'
 import { useStateContext } from '../context/contextProvider'
@@ -8,6 +8,7 @@ import axios from 'axios'
 import Loader from './Loader'
 import { getPillar1 } from '../utils/getPillars'
 import Priority from './Priority'
+import { FaAngleRight } from 'react-icons/fa'
 
 const ProjectInfo = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -23,11 +24,12 @@ const ProjectInfo = () => {
     const [Base64Image, setBase64Image] = useState('')
     const [getId, setGetId] = useState([])
     const [iconics, setIconics] = useState('')
-
+    
+    const [nameOfPillar, setNameOfPillar] = useState([])
     // console.log('detailssss', projectDetail)
     const { id } = useParams()
 
-    const singleProject = pillars.find((item) => item.id === Number(id))
+    // const singleProject = pillars.find((item) => item.id === Number(id))
 
     // const openModal = () => {
     //     setIsOpen(!isOpen)
@@ -64,6 +66,15 @@ const ProjectInfo = () => {
             console.log('errorrrrrrrrrff', error)
         }
     }
+    const setPill = () => {
+        const n = pillars.find((a) => a.id === getId.pillarid)
+        console.log('nnnnnnnnnn', n)
+        return n
+    }
+
+    useEffect(() => {
+        setPill()
+    }, [getId.pillarid])
 
     // useEffect(() => {
     //     fetchId()
@@ -89,6 +100,33 @@ const ProjectInfo = () => {
                 )
                 console.log('newdataaafrom dave', res.data.data)
                 setSinglePillarProject(res.data.data.find((X) => X.id === Number(id)))
+
+                setLoading(false)
+            }
+        } catch (error) {
+            console.log('errorrrrrrrrrff', error)
+        }
+    }
+    const fetchPillars = async () => {
+        try {
+            await fetchId()
+
+            if (userToken && getId.pillarid) {
+                setLoading(true)
+
+                const res = await axios.get(
+                    `https://spms.telexcoresources.com.ng/api/v1/pillar/view/all`,
+
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${userToken}`
+                        }
+                    }
+                )
+                // console.log('newdataaafrom dave', res.data.data)
+                setNameOfPillar(res.data.data.find((X) => X.id === getId.pillarid))
+
                 setLoading(false)
             }
         } catch (error) {
@@ -98,6 +136,7 @@ const ProjectInfo = () => {
 
     useEffect(() => {
         fetchSinglePillar()
+        fetchPillars()
     }, [userToken, getId.pillarid])
 
     // const newp = singlePillarProject.map((x) => x)
@@ -272,9 +311,11 @@ const ProjectInfo = () => {
             setIsToggled(false)
         }
     }, [iconics])
+ 
+    const {pathname} = useLocation()
+    const activePath = pathname === `/project_info/${id}`
 
-    // console.log('immmmmmmm', singlePillarProject.image)
-
+    console.log('mmmmmmmmmmm', activePath)
     return (
         <>
             {/* {isOpen ? (
@@ -283,7 +324,31 @@ const ProjectInfo = () => {
 
             )} */}
             <div className="relative bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-                <h2 className="text-gray-900 font-bold text-xl mb-10">Project Details</h2>
+                <div className="flex items-center gap-x-2 mb-8">
+                    <Link
+                        className="flex items-center gap-x-1 text-gray-400 text-lg hover:text-gray-800 transition-all duration-300 hover:no-underline"
+                        to="/"
+                    >
+                        Dashboard <FaAngleRight />{' '}
+                    </Link>
+                    <Link
+                        className="flex items-center gap-x-1 text-gray-400 text-lg hover:text-gray-800 transition-all duration-300 hover:no-underline"
+                        to={`/pillars/${getId.pillarid}`}
+                    >
+                        {nameOfPillar.pillarname} <FaAngleRight />{' '}
+                    </Link>
+                    <Link
+                        className={`${
+                            activePath
+                                ? 'flex items-center gap-x-1 text-gray-800 text-lg  hover:no-underline'
+                                : 'flex items-center gap-x-1 text-gray-400 text-lg hover:text-gray-800 transition-all duration-300 hover:no-underline'
+                        }`}
+                        to=""
+                    >
+                        {singlePillarProject.projectname}{' '}
+                    </Link>
+                </div>
+                <h2 className="text-gray-900 font-bold text-xl">Project Details</h2>
                 <div className="flex justify-end mb-8">
                     {/* <Priority togglePriority={togglePriority} iconic={iconic} setIconic={setIconic}/> */}
                     <label className="flex items-center cursor-pointer">
@@ -325,34 +390,54 @@ const ProjectInfo = () => {
                             ></video>
                         </div>
                     </div>
-                    <div className="mb-5">
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            project name:{' '}
-                            <span className="font-semibold text-xl">{singlePillarProject.projectname}</span>
+                    <div className="mb-10  p-4 gap-5 grid grid-cols-3">
+                        <h2 className="text-gray-400 bg-white shadow-lg p-3 font-sans rounded-md font-semibold text-sm uppercase flex flex-col items-center">
+                            project name{' '}
+                            <span className="font-semibold text-xl text-gray-800">
+                                {singlePillarProject.projectname}
+                            </span>
                         </h2>
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            contractor: <span className="text-xl font-semibold">{singlePillarProject.contractor}</span>
+                        <h2 className="text-gray-400 font-sans bg-white shadow-lg p-3 rounded-md font-semibold text-sm uppercase flex flex-col items-center">
+                            contractor{' '}
+                            <span className="text-xl font-semibold text-gray-800">
+                                {singlePillarProject.contractor}
+                            </span>
                         </h2>
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            local government area:{' '}
-                            <span className="text-xl font-semibold">{singlePillarProject.lga}</span>
+                        <h2 className="text-gray-400 font-sans bg-white shadow-lg p-3 rounded-md font-semibold text-sm uppercase flex flex-col items-center">
+                            local government area{' '}
+                            <span className="text-xl font-semibold text-gray-800">{singlePillarProject.lga}</span>
                         </h2>
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            project status:{' '}
-                            <span className="text-xl font-semibold">{singlePillarProject.projectstatus}</span>
+                        <h2 className="text-gray-400 font-sans bg-white shadow-lg p-3 py-6 rounded-md font-semibold text-sm uppercase flex flex-col items-center">
+                            project status{' '}
+                            <span
+                                className={
+                                    singlePillarProject.projectstatus === 'approved'
+                                        ? 'text-xl font-semibold text-green-700'
+                                        : 'text-xl font-semibold text-gray-800'
+                                }
+                            >
+                                {singlePillarProject.projectstatus}
+                            </span>
                         </h2>
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            weight: <span className="text-xl font-semibold">{singlePillarProject.weight}</span>
+                        <h2 className="text-gray-400 font-sans bg-white shadow-lg p-3 py-6 rounded-mdfont-semibold text-sm uppercase flex flex-col items-center">
+                            weight{' '}
+                            <span className="text-xl font-semibold text-gray-800">{singlePillarProject.weight}</span>
                         </h2>
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            award date: <span className="text-xl font-semibold">{singlePillarProject.award_date}</span>
+                        <h2 className="text-gray-400 font-sans bg-white shadow-lg p-3 py-6 rounded-mdfont-semibold text-sm uppercase flex flex-col items-center">
+                            amount:{' '}
+                            <span className="text-xl font-semibold text-gray-800">{singlePillarProject.amount}</span>
                         </h2>
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            delivery date:{' '}
-                            <span className="text-xl font-semibold">{singlePillarProject.delivery_date}</span>
+                        <h2 className="text-gray-400 font-sans bg-white shadow-lg p-3 py-6 rounded-mdfont-semibold text-sm uppercase flex flex-col items-center">
+                            award date{' '}
+                            <span className="text-xl font-semibold text-gray-800">
+                                {singlePillarProject.award_date}
+                            </span>
                         </h2>
-                        <h2 className="text-gray-600 font-sans font-semibold text-lg uppercase">
-                            amount: <span className="text-xl font-semibold">{singlePillarProject.amount}</span>
+                        <h2 className="text-gray-400 font-sans bg-white shadow-lg p-3 py-6 rounded-mdfont-semibold text-sm uppercase flex flex-col items-center">
+                            delivery date{' '}
+                            <span className="text-xl font-semibold text-gray-800">
+                                {singlePillarProject.delivery_date}
+                            </span>
                         </h2>
                     </div>
                 </div>
