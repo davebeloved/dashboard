@@ -103,11 +103,11 @@ const Common = () => {
     const fetchData = async () => {
         try {
             const res = await axios.post(
-                'https://spms.telexcoresources.com.ng/api/v1/project/viewbystatus',
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
                 {
                     pillarid: id,
                     projectstatus: 'approved',
-                    iconic: 'no'
+                    // iconic: 'no'
                 },
                 {
                     headers: {
