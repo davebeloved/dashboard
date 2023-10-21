@@ -100,7 +100,7 @@ export default function TransactionChart() {
                         }
                     }
                 )
-                // console.log('newdataaa', res.data.data)
+                // console.log('newdataaadave', res.data.data)
 
                 setApprove(res.data.data)
             }
@@ -111,8 +111,13 @@ export default function TransactionChart() {
 
     const fetchData = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/4/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 4,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -124,15 +129,20 @@ export default function TransactionChart() {
 
             // setBarchart([...barchart, ...res.data.data])
             setBarchart(res.data.data)
-            // console.log('resssss', res.data.data)
+            console.log('resssssnnnn', res.data.data)
         } catch (error) {
             console.log(error)
         }
     }
     const fetchData2 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/5/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 5,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -151,8 +161,13 @@ export default function TransactionChart() {
     }
     const fetchData3 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/6/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 6,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -171,8 +186,13 @@ export default function TransactionChart() {
     }
     const fetchData4 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/7/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 7,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -191,8 +211,13 @@ export default function TransactionChart() {
     }
     const fetchData5 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/8/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 8,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -211,8 +236,13 @@ export default function TransactionChart() {
     }
     const fetchData6 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/9/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 9,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -281,11 +311,58 @@ export default function TransactionChart() {
         ]
     }
 
+    const options = {
+        plugins: {
+            outlabels: {
+                text: '%l %p',
+                color: 'white',
+                stretch: 35,
+                font: {
+                    resizable: true,
+                    minSize: 12,
+                    maxSize: 18
+                }
+            },
+            legend: {
+                display: false,
+                position: 'top',
+
+                labels: {
+                    padding: 10,
+                    boxWidth: 15
+                }
+            },
+            datalabels: {
+                display: true,
+                align: 'bottom',
+                backgroundColor: '#ccc',
+                // borderRadius: 5,
+                font: {
+                    size: 18
+                }
+            }
+        },
+        // layout: {
+        //     padding: {
+        //         top: 10
+        //         // bottom : 10
+        //     }
+        // },
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            labels: {
+                fontSize: 200,
+                borderRadius: 50
+            }
+        }
+    }
+
     console.log('charttt', barchart)
     return (
         // <div className="charts">
         <div className="w-[22rem] lg:w-full bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
-            <strong className="text-gray-700 pl-5  font-medium">Chart Info</strong>
+            <strong className="text-gray-700 pl-5  font-medium">Bar Chart </strong>
             <div className="mt-3  lg:w-full flex-1 text-xs">
                 <input type="hidden" name="pillarid" value={pillarid} onChange={(e) => setPillarid(e.target.value)} />
                 <input
@@ -296,7 +373,7 @@ export default function TransactionChart() {
                 />
                 <input type="hidden" name="iconic" value={iconic} onChange={(e) => setIconic(e.target.value)} />
 
-                <Bar data={datas} />
+                <Bar data={datas} options={options}/>
             </div>
         </div>
     )

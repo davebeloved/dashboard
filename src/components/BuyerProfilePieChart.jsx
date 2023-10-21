@@ -226,21 +226,79 @@ export default function BuyerProfilePieChart() {
         labels: pillars.map((pillar) => pillar.pillarname)
         // labels: pillars.map((pillar) => pillar.pillarname.substring(0, 5))
     }
-    const options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        tooltips: {
-            callbacks: {
-                label: (tooltipItem, data) => {
-                    const dataset = data.datasets[tooltipItem.datasetIndex]
-                    const total = dataset.data.reduce((acc, value) => acc + value, 0)
-                    const value = dataset.data[tooltipItem.index]
-                    const percentage = ((value / total) * 100).toFixed(2)
-                    return `${data.labels[tooltipItem.index]}: ${percentage}%`
+
+        const options = {
+            plugins: {
+                outlabels: {
+                    text: '%l %p',
+                    color: 'white',
+                    stretch: 35,
+                    font: {
+                        resizable: true,
+                        minSize: 12,
+                        maxSize: 18
+                    }
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+
+                    labels: {
+                        usePointStyle: true,
+                        pointStyle: 'rounded',
+                        padding: 10
+                        // boxHeight: 50
+                    }
+                },
+                datalabels: {
+                    display: true,
+                    align: 'bottom',
+                    backgroundColor: '#ccc',
+                    // borderRadius: 5,
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+            // layout: {
+            //     padding: {
+            //         top: 10
+            //         // bottom : 10
+            //     }
+            // },
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                labels: {
+                    fontSize: 200,
+                    borderRadius: 50
                 }
             }
         }
-    }
+    // const options = {
+    //     responsive: true,
+    //     maintainAspectRatio: false,
+
+    //     plugins: {
+    //         labels: {
+    //             usePointStyle: true,
+    //             pointStyle: 'rounded',
+    //             padding: 10
+    //             // boxHeight: 50
+    //         }
+    //     },
+    //     tooltips: {
+    //         callbacks: {
+    //             label: (tooltipItem, data) => {
+    //                 const dataset = data.datasets[tooltipItem.datasetIndex]
+    //                 const total = dataset.data.reduce((acc, value) => acc + value, 0)
+    //                 const value = dataset.data[tooltipItem.index]
+    //                 const percentage = ((value / total) * 100).toFixed(2)
+    //                 return `${data.labels[tooltipItem.index]}: ${percentage}%`
+    //             }
+    //         }
+    //     }
+    // }
     return (
         <div className="w-[26rem] lg:w-full h-[22rem] mb-10 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
             {/* <div className="w-[20rem] h-[22rem] ml-28 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col"> */}

@@ -211,11 +211,10 @@ const Common = () => {
                 }
             },
             legend: {
-                display: true,
+                display: false,
                 position: 'top',
 
                 labels: {
-                 
                     padding: 10,
                     boxWidth: 15
                 }

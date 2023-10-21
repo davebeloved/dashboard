@@ -54,8 +54,13 @@ export default function Charts() {
 
     const fetchData = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/4/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 4,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -74,8 +79,13 @@ export default function Charts() {
     }
     const fetchData2 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/5/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 5,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -94,8 +104,13 @@ export default function Charts() {
     }
     const fetchData3 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/6/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 6,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -114,8 +129,13 @@ export default function Charts() {
     }
     const fetchData4 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/7/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 7,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -134,8 +154,13 @@ export default function Charts() {
     }
     const fetchData5 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/8/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 8,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -154,8 +179,13 @@ export default function Charts() {
     }
     const fetchData6 = async (item) => {
         try {
-            const res = await axios.get(
-                `https://spms.telexcoresources.com.ng/api/v1/project/dashboardchart/9/noniconic`,
+            const res = await axios.post(
+                'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
+                {
+                    pillarid: 9,
+                    projectstatus: 'approved'
+                    // iconic: 'no'
+                },
 
                 {
                     headers: {
@@ -301,17 +331,48 @@ export default function Charts() {
         ]
     }
     const options = {
+        plugins: {
+            outlabels: {
+                text: '%l %p',
+                color: 'white',
+                stretch: 35,
+                font: {
+                    resizable: true,
+                    minSize: 12,
+                    maxSize: 18
+                }
+            },
+            legend: {
+                display: false,
+                position: 'top',
+
+                labels: {
+                    padding: 10,
+                    boxWidth: 15
+                }
+            },
+            datalabels: {
+                display: true,
+                align: 'bottom',
+                backgroundColor: '#ccc',
+                // borderRadius: 5,
+                font: {
+                    size: 18
+                }
+            }
+        },
+        // layout: {
+        //     padding: {
+        //         top: 10
+        //         // bottom : 10
+        //     }
+        // },
         responsive: true,
         maintainAspectRatio: false,
-        tooltips: {
-            callbacks: {
-                label: (tooltipItem, data) => {
-                    const dataset = data.datasets[tooltipItem.datasetIndex]
-                    const total = dataset.data.reduce((acc, value) => acc + value, 0)
-                    const value = dataset.data[tooltipItem.index]
-                    const percentage = ((value / total) * 100).toFixed(2)
-                    return `${data.labels[tooltipItem.index]}: ${percentage}%`
-                }
+        legend: {
+            labels: {
+                fontSize: 200,
+                borderRadius: 50
             }
         }
     }
