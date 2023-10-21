@@ -106,7 +106,7 @@ const Common = () => {
                 'https://spms.telexcoresources.com.ng/api/v1/project/viewallstatus',
                 {
                     pillarid: id,
-                    projectstatus: 'approved',
+                    projectstatus: 'approved'
                     // iconic: 'no'
                 },
                 {
@@ -213,11 +213,11 @@ const Common = () => {
             legend: {
                 display: true,
                 position: 'top',
-                
+
                 labels: {
                  
-                    padding: 10
-                    // boxHeight: 50
+                    padding: 10,
+                    boxWidth: 15
                 }
             },
             datalabels: {
@@ -260,10 +260,10 @@ const Common = () => {
             legend: {
                 display: true,
                 position: 'top',
-                
+
                 labels: {
-                       usePointStyle: true,
-                pointStyle: 'rounded',
+                    usePointStyle: true,
+                    pointStyle: 'rounded',
                     padding: 10
                     // boxHeight: 50
                 }
