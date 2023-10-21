@@ -24,7 +24,7 @@ const ProjectInfo = () => {
     const [Base64Image, setBase64Image] = useState('')
     const [getId, setGetId] = useState([])
     const [iconics, setIconics] = useState('')
-    
+
     const [nameOfPillar, setNameOfPillar] = useState([])
     // console.log('detailssss', projectDetail)
     const { id } = useParams()
@@ -311,8 +311,8 @@ const ProjectInfo = () => {
             setIsToggled(false)
         }
     }, [iconics])
- 
-    const {pathname} = useLocation()
+
+    const { pathname } = useLocation()
     const activePath = pathname === `/project_info/${id}`
 
     console.log('mmmmmmmmmmm', activePath)
@@ -510,7 +510,7 @@ const ProjectInfo = () => {
                             <input
                                 type="text"
                                 name="name"
-                                placeholder="Enter your Name"
+                                placeholder="Enter Comment Heading"
                                 className="w-full p-3 outline-none border text-black border-neutral-600 mb-3"
                                 onChange={(e) => setName(e.target.value)}
                             />

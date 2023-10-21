@@ -172,7 +172,8 @@ const Common = () => {
         labels: barchart.map((project) => project.projectname),
         datasets: [
             {
-                label: barchart.map((project) => project.projectname),
+                // label: barchart.map((project) => project.projectname),
+                label: 'project',
                 backgroundColor: pillars.map((colors) => colors.color),
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
@@ -204,18 +205,23 @@ const Common = () => {
                 position: 'top',
                 labels: {
                     padding: 10,
-                    boxHeight: 50
+                    // boxHeight: 50
                 }
             }
         },
-        layout: {
-            padding: {
-                top: 10
-                // bottom : 10
-            }
-        },
+        // layout: {
+        //     padding: {
+        //         top: 10
+        //         // bottom : 10
+        //     }
+        // },
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        legend:{
+            labels:{
+                fontSize: 200
+            }
+        }
     }
 
     console.log('bar', barchart)
@@ -330,17 +336,31 @@ const Common = () => {
                             )}
                         </table>
                     </div>
-                    <div className="mt-10">
-                        <h2 className="text-xl font-semiboldbold text-black text-center">Chart Details</h2>
-                        <div className=" w-full flex justify-between ">
+                    <div className="mt-10 ">
+                        <h2 className="text-xl font-semiboldbold  text-black text-center">Chart Details</h2>
+                        {/* <div className=" w-full flex justify-between "> */}
+                        {/* {barchart.length && (
+                                <div className="flex items-center   mt-3 w-72 ml-32   h-[22rem] py-5  text-xs">
+                                    <Bar data={datas} options={options} className='bg-black'/>
+                                    {piechart.length && (
+                                        <div className="flex-1 bg-black">
+                                            <Pie data={datas2} options={options} className='w-96'/>
+                                        </div>
+                                    )}
+                                </div> */}
+
+                        {/* </div> */}
+                        <div className="grid mt-16 ml-32 grid-cols-2 gap-[20px] h-[400px] ">
                             {barchart.length && (
-                                <div className="mt-3 w-[48%] gap-x-4  h-[22rem] py-5 flex-1 text-xs">
-                                    <Bar data={datas} options={options} />
+                                <div className="w-[20rem]  lg:w-[22re]   p-4 rounded-sm bg-white border border-gray-200 flex flex-col flex-1">
+                                    {' '}
+                                    <Bar data={datas} options={options} />{' '}
                                 </div>
                             )}
                             {piechart.length && (
-                                <div className="w-1/2  h-[22rem] ml-48 lg:ml-0 bg-white p-4 rounded-sm border border-gray-200 flex flex-col ">
-                                    <Pie data={datas2} options={options} />
+                                <div className="w-[16rem]   mb-10 lg:ml-0  p-4 bg-white rounded-sm border border-gray-200 flex flex-col">
+                                    {' '}
+                                    <Pie data={datas2} options={options} className="w-96" />
                                 </div>
                             )}
                         </div>
