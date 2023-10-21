@@ -200,12 +200,33 @@ const Common = () => {
 
     const options = {
         plugins: {
+            outlabels: {
+                text: '%l %p',
+                color: 'white',
+                stretch: 35,
+                font: {
+                    resizable: true,
+                    minSize: 12,
+                    maxSize: 18
+                }
+            },
             legend: {
                 display: true,
                 position: 'top',
+                
                 labels: {
-                    padding: 10,
+                 
+                    padding: 10
                     // boxHeight: 50
+                }
+            },
+            datalabels: {
+                display: true,
+                align: 'bottom',
+                backgroundColor: '#ccc',
+                // borderRadius: 5,
+                font: {
+                    size: 18
                 }
             }
         },
@@ -217,9 +238,58 @@ const Common = () => {
         // },
         responsive: true,
         maintainAspectRatio: false,
-        legend:{
-            labels:{
-                fontSize: 200
+        legend: {
+            labels: {
+                fontSize: 200,
+                borderRadius: 50
+            }
+        }
+    }
+    const options2 = {
+        plugins: {
+            outlabels: {
+                text: '%l %p',
+                color: 'white',
+                stretch: 35,
+                font: {
+                    resizable: true,
+                    minSize: 12,
+                    maxSize: 18
+                }
+            },
+            legend: {
+                display: true,
+                position: 'top',
+                
+                labels: {
+                       usePointStyle: true,
+                pointStyle: 'rounded',
+                    padding: 10
+                    // boxHeight: 50
+                }
+            },
+            datalabels: {
+                display: true,
+                align: 'bottom',
+                backgroundColor: '#ccc',
+                // borderRadius: 5,
+                font: {
+                    size: 18
+                }
+            }
+        },
+        // layout: {
+        //     padding: {
+        //         top: 10
+        //         // bottom : 10
+        //     }
+        // },
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+            labels: {
+                fontSize: 200,
+                borderRadius: 50
             }
         }
     }
@@ -360,7 +430,7 @@ const Common = () => {
                             {piechart.length && (
                                 <div className="w-[16rem]   mb-10 lg:ml-0  p-4 bg-white rounded-sm border border-gray-200 flex flex-col">
                                     {' '}
-                                    <Pie data={datas2} options={options} className="w-96" />
+                                    <Pie data={datas2} options={options2} className="w-96" />
                                 </div>
                             )}
                         </div>
